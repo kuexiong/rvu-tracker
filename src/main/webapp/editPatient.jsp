@@ -1,7 +1,7 @@
 <%@include file="head.jsp"%>
 
 <html>
-    <body>
+  <body>
 
-    </body>
+  </body>
 </html>
