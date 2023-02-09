@@ -13,12 +13,22 @@ I would like to build a website that providers can easily use to track their bil
 and reports.
 
 ### Project Technologies/Techniques
- 
+* IDE: IntelliJ IDEA
+* Dependency Management
+    * Maven
+* Logging
+    * Log4J2
+* Unit Testing
+    * JUnit tests to achieve 80%+ code coverage
+* Database
+    * MySQL 8.0.16
+* Web Services consumed using Java
+    * Quickchart to generate progress bar https://quickchart.io/
 
 ### Design
+* [User Stories](DesignDocuments/userStories.md)
 
-
-### Project Plan
+### [Project Plan](ProjectPlan.md)
 
 
 ### [TimeLog](timeLog.md)
