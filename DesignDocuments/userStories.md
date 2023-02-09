@@ -2,13 +2,13 @@
 # User Stories
 
 ### Sign Up*
-As a new user, I want to create an account so I can track my reports and billable hours.
+As a new user, I want to create an account, so I can track my reports and billable hours.
 
 ### Sign In*
-As a registered user, I want to log in to add new patients and edit existing patients. 
+As a registered user, I want to log in, so I can add new patients and edit existing patients. 
 
 ### Add Patient*
-As a registered user, I want to be able to add new patients.
+As a registered user, I want to be able to add new patients, so I can keep a list of all my patients.
 
 ### Edit Patient*
 As a registered user, I want to be able to edit my existing patient data.
