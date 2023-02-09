@@ -27,6 +27,7 @@ and reports.
 
 ### Design
 * [User Stories](DesignDocuments/userStories.md)
+* [Wireframes](DesignDocuments/wireframes)
 
 ### [Project Plan](ProjectPlan.md)
 
