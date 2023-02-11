@@ -16,9 +16,9 @@ public class UserDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
-    Session session;
-    Root<User> root;
-    CriteriaQuery<User> query;
+
+    private Session session;
+    private CriteriaQuery<User> query;
 
     /**
      * Gets all users.
@@ -100,6 +100,6 @@ public class UserDao {
     private void buildQuery() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         query = builder.createQuery( User.class );
-        root = query.from( User.class );
+        Root<User> root = query.from(User.class);
     }
 }
