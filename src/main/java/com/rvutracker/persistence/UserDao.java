@@ -47,6 +47,22 @@ public class UserDao {
     }
 
     /**
+     * Gets a user by email.
+     *
+     * @param email the email
+     * @return a user
+     */
+    public List<User> getByEmail(String email) {
+        openSession();
+        buildQuery();
+        Expression<String> propertyPath = root.get("email");
+        query.where(builder.like(propertyPath, "%" + email + "%"));
+        List<User> users = session.createQuery(query).getResultList();
+        session.close();
+        return users;
+    }
+
+    /**
      * Update user.
      *
      * @param user User to be inserted or updated.
