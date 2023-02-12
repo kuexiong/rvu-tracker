@@ -22,6 +22,9 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -39,13 +42,13 @@ public class User {
      * @param firstName the first name
      * @param lastName  the last name
      * @param email     the email
-     * @param id        the id
+     * @param password  the password
      */
-    public User(String firstName, String lastName, String email, int id) {
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.id = id;
+        this.password = password;
     }
 
     /**
@@ -84,6 +87,11 @@ public class User {
         this.firstName = firstName;
     }
 
+    /**
+     * Gets last name.
+     *
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
@@ -113,6 +121,24 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Gets user's password.
+     *
+     * @return user's password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets user's password.
+     *
+     * @param password user's password
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
