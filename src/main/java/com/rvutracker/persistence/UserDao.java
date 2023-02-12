@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class UserDao {
 
     private Session session;
     private CriteriaQuery<User> query;
+    private Root<User> root;
+    private CriteriaBuilder builder;
 
     /**
      * Gets all users.
@@ -69,7 +72,9 @@ public class UserDao {
      */
     public void saveOrUpdate(User user) {
         openSession();
+        Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(user);
+        transaction.commit();
         session.close();
     }
 
@@ -102,7 +107,6 @@ public class UserDao {
         session.close();
     }
 
-
     /**
      * Open a session
      */
@@ -114,8 +118,8 @@ public class UserDao {
      * Instantiates CriteriaBuilder and directs query to User class.
      */
     private void buildQuery() {
-        CriteriaBuilder builder = session.getCriteriaBuilder();
+        builder = session.getCriteriaBuilder();
         query = builder.createQuery( User.class );
-        Root<User> root = query.from(User.class);
+        root = query.from(User.class);
     }
 }
