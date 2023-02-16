@@ -3,7 +3,6 @@ package com.rvutracker.controller;
 import com.rvutracker.entity.User;
 import com.rvutracker.persistence.UserDao;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +22,7 @@ import java.io.IOException;
 )
 public class SignUp extends HttpServlet {
     /**
-     * Handles HTTP GET requests
+     * Handles HTTP POST requests
      *
      * @param request Description of the Parameter
      * @param response Description of the Parameter
@@ -59,7 +58,7 @@ public class SignUp extends HttpServlet {
         //TODO: need sign-in servlet
 
         // Redirect browser back to sign-in
-        String url = "/signInServlet";
+        String url = "/index.jsp";
         response.sendRedirect(request.getContextPath() + url);
     }
 }
