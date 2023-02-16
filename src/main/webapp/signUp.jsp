@@ -5,7 +5,7 @@
 
         <h3>Create Account</h3>
 
-            <form action="com/rvutracker/controller/SignUp.java" method="post">
+            <form action="signUpServlet" method="post">
 
                 <label for="firstName">First Name</label><br/>
                 <input id="firstName" type="text" name="firstName" required/>
