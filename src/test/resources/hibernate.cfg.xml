@@ -14,6 +14,7 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
         <mapping class="com.rvutracker.entity.User"/>
+        <mapping class="com.rvutracker.entity.Patient"/>
 
     </session-factory>
 </hibernate-configuration>
