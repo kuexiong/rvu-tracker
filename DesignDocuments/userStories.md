@@ -13,6 +13,9 @@ As a registered user, I want to be able to add new patients, so I can keep a lis
 ### Edit Patient*
 As a registered user, I want to be able to edit my existing patient data.
 
+### Delete Patient*
+As a registered user, I want to be able to delete an existing patient data.
+
 ### Change Status of Report*
 As a registered user, I want to be able to change the status of reports as I complete them.
 
@@ -20,7 +23,11 @@ As a registered user, I want to be able to change the status of reports as I com
 As a registered user, I want to be able to add the time billed for each patient, for each CPT code.
 
 ### View RVU Accrued*
-As a registered user, I want to be able to see the time billed converted to total RVU (Relative Value Units) per month 
+As a registered user, I want to be able to see the time billed converted to total RVU (Relative Value Units) per month, 
 so I can make sure I am going to meet my goal.
+
+### RVU Progress Bar*
+As a registered user, I want to be able to see a progress bar visualizing my accrued RVUs, so that I can quickly gauge 
+my productivity.
 
 *Denotes MVP
