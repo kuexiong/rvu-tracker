@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -27,7 +28,7 @@ public class Patient {
     private String lastName;
 
     @Column(name = "interviewDate")
-    private Date interviewDate;
+    private String interviewDate;
 
     @Column(name = "referralQuestion")
     private String referralQuestion;
@@ -54,7 +55,7 @@ public class Patient {
      * @param referralQuestion the referral question
      * @param user             the user
      */
-    public Patient(String firstName, String lastName, Date interviewDate,
+    public Patient(String firstName, String lastName, String interviewDate,
                    String referralQuestion, User user) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -122,7 +123,7 @@ public class Patient {
      *
      * @return the interview date
      */
-    public Date getInterviewDate() {
+    public String getInterviewDate() {
         return interviewDate;
     }
 
@@ -131,7 +132,7 @@ public class Patient {
      *
      * @param interviewDate the interview date
      */
-    public void setInterviewDate(Date interviewDate) {
+    public void setInterviewDate(String interviewDate) {
         this.interviewDate = interviewDate;
     }
 
