@@ -183,4 +183,21 @@ public class Patient {
                 ", user=" + user +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return id == patient.id &&
+                Objects.equals(firstName, patient.firstName) &&
+                Objects.equals(lastName, patient.lastName) &&
+                Objects.equals(interviewDate, patient.interviewDate) &&
+                Objects.equals(referralQuestion, patient.referralQuestion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, interviewDate, referralQuestion);
+    }
 }
