@@ -71,7 +71,7 @@ class UserDaoTest {
         user.setLastName(newLastName);
         genericDao.saveOrUpdate(user);
         User retrievedUser = (User)genericDao.getById(1);
-        assertEquals("Pikachu",retrievedUser.getLastName());
+        assertEquals(user,retrievedUser);
     }
 
     /**
@@ -80,13 +80,10 @@ class UserDaoTest {
     @Test
     void insertSuccess() {
         User user = new User("Ari", "Lee", "alee@gmail.com", "pizza");
-        genericDao.insert(user);
-        //TODO: change assert method
-//        User expectedUser = user;
-//        List<User> actualUser = dao.getByEmail("alee@gmail.com");
-//        assertTrue(expectedUser.equals(actualUser));
-        List<User> users = genericDao.getAll();
-        assertEquals(3, users.size());
+        int id = genericDao.insert(user);
+        assertNotEquals(0,id);
+        User expectedUser = (User)genericDao.getById(id);
+        assertEquals(user,expectedUser);
     }
 
     /**
