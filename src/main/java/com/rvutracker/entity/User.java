@@ -148,6 +148,34 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * Gets patients.
+     *
+     * @return the patients
+     */
+    public Set<Patient> getPatients() {
+        return patients;
+    }
+
+    /**
+     * Sets patients.
+     *
+     * @param patients the patients
+     */
+    public void setPatients(Set<Patient> patients) {
+        this.patients = patients;
+    }
+
+    /**
+     * Add patient.
+     *
+     * @param patient the patient
+     */
+    public void addPatient(Patient patient) {
+        patients.add(patient);
+        patient.setUser(this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
