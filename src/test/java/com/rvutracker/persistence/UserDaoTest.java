@@ -91,10 +91,9 @@ class UserDaoTest {
      */
     @Test
     void deleteSuccess() {
-    User userToBeDeleted = (User)genericDao.getById(2);
+        User userToBeDeleted = (User)genericDao.getById(2);
         genericDao.delete(userToBeDeleted);
-    List<User> users = genericDao.getAll();
-    assertEquals(1, users.size());
+        assertNull(genericDao.getById(2));
     }
 
     @Test
