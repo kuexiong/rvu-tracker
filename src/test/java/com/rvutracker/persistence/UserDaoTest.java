@@ -96,6 +96,9 @@ class UserDaoTest {
         assertNull(genericDao.getById(2));
     }
 
+    /**
+     * Verifies get by property like success.
+     */
     @Test
     void getByPropertyLikeSuccess() {
         List<User> retrievedUsers = genericDao.getByPropertyLike("lastName","Sq");
