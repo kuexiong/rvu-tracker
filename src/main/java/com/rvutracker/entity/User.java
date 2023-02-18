@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @author Kue Xiong
  */
 @Entity(name = "User")
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Column(name = "firstName")
