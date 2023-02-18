@@ -11,20 +11,23 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User dao test.
+ */
 class UserDaoTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    UserDao dao;
+    GenericDao genericDao;
 
     /**
-     * Creates the dao and resets database
+     * Creates the GenericDao and resets user database
      * with original content.
      */
     @BeforeEach
     void setUp() {
 
-        dao = new UserDao();
+        genericDao = new GenericDao(User.class);
 
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
@@ -35,7 +38,7 @@ class UserDaoTest {
      */
     @Test
     void getAllUsersSuccess() {
-        List<User> users = dao.getAllUsers();
+        List<User> users = genericDao.getAll();
         assertEquals(2,users.size());
     }
 
@@ -44,7 +47,7 @@ class UserDaoTest {
      */
     @Test
     void getByIdSuccess() {
-        User retrievedUser = dao.getById(1);
+        User retrievedUser = (User)genericDao.getById(1);
         assertNotNull(retrievedUser);
         assertEquals("Kue", retrievedUser.getFirstName());
     }
@@ -54,7 +57,7 @@ class UserDaoTest {
      */
     @Test
     void getByEmailSuccess() {
-        List<User> users = dao.getByEmail("kxiong1@madisoncollege.edu");
+        List<User> users = (List<User>) genericDao.getByEmail("kxiong1@madisoncollege.edu");
         assertEquals(1, users.size());
     }
 
@@ -64,10 +67,10 @@ class UserDaoTest {
     @Test
     void saveOrUpdate() {
         String newLastName = "Pikachu";
-        User user = dao.getById(1);
+        User user = (User)genericDao.getById(1);
         user.setLastName(newLastName);
-        dao.saveOrUpdate(user);
-        User retrievedUser = dao.getById(1);
+        genericDao.saveOrUpdate(user);
+        User retrievedUser = (User)genericDao.getById(1);
         assertEquals("Pikachu",retrievedUser.getLastName());
     }
 
@@ -77,8 +80,12 @@ class UserDaoTest {
     @Test
     void insertSuccess() {
         User user = new User("Ari", "Lee", "alee@gmail.com", "pizza");
-        dao.insert(user);
-        List<User> users = dao.getAllUsers();
+        genericDao.insert(user);
+        //TODO: change assert method
+//        User expectedUser = user;
+//        List<User> actualUser = dao.getByEmail("alee@gmail.com");
+//        assertTrue(expectedUser.equals(actualUser));
+        List<User> users = genericDao.getAll();
         assertEquals(3, users.size());
     }
 
@@ -87,9 +94,9 @@ class UserDaoTest {
      */
     @Test
     void deleteSuccess() {
-    User userToBeDeleted = dao.getById(2);
-    dao.delete(userToBeDeleted);
-    List<User> users = dao.getAllUsers();
+    User userToBeDeleted = (User)genericDao.getById(2);
+        genericDao.delete(userToBeDeleted);
+    List<User> users = genericDao.getAll();
     assertEquals(1, users.size());
     }
 }
