@@ -85,23 +85,23 @@ class PatientDaoTest {
         assertEquals(insertedPatient,retrievedPatient);
 
     }
-//
-//    /**
-//     * Verifies delete a patient success.
-//     */
-//    @Test
-//    void deleteSuccess() {
-//        Patient patientToBeDeleted = (Patient)genericDao.getById(2);
-//        genericDao.delete(patientToBeDeleted);
-//        assertNull(genericDao.getById(2));
-//    }
-//
-//    /**
-//     * Verifies get by property like success.
-//     */
-//    @Test
-//    void getByPropertyLikeSuccess() {
-//        List<Patient> retrievedPatients = genericDao.getByPropertyLike("lastName","Sq");
-//        assertEquals(1, retrievedPatients.size());
-//    }
+
+    /**
+     * Verifies delete a patient success.
+     */
+    @Test
+    void deleteSuccess() {
+        Patient patientToBeDeleted = (Patient)genericDao.getById(2);
+        genericDao.delete(patientToBeDeleted);
+        assertNull(genericDao.getById(2));
+    }
+
+    /**
+     * Verifies get by property like success.
+     */
+    @Test
+    void getByPropertyLikeSuccess() {
+        List<Patient> retrievedPatients = genericDao.getByPropertyLike("lastName","Pig");
+        assertEquals(2, retrievedPatients.size());
+    }
 }
