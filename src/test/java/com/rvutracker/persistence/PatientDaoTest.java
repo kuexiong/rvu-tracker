@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,7 +73,7 @@ class PatientDaoTest {
     void insertSuccess() {
         GenericDao userDao = new GenericDao(User.class);
         User user = (User)userDao.getById(2);
-        Patient newPatient = new Patient("Suzy","Sheep", "2023-01-30","Learning difficulties",user);
+        Patient newPatient = new Patient("Suzy","Sheep", "2023-01-30","Learning difficulties","Signed", user);
         user.addPatient(newPatient);
 
         int id = genericDao.insert(newPatient);
@@ -83,7 +82,6 @@ class PatientDaoTest {
         Patient insertedPatient = (Patient)genericDao.getById(id);
         Patient retrievedPatient = (Patient)genericDao.getById(id);
         assertEquals(insertedPatient,retrievedPatient);
-
     }
 
     /**
@@ -101,7 +99,7 @@ class PatientDaoTest {
      */
     @Test
     void getByPropertyLikeSuccess() {
-        List<Patient> retrievedPatients = genericDao.getByPropertyLike("lastName","Pig");
-        assertEquals(2, retrievedPatients.size());
+        List<Patient> retrievedPatients = genericDao.getByPropertyLike("reportStatus","Final");
+        assertEquals(1, retrievedPatients.size());
     }
 }
