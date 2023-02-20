@@ -33,8 +33,8 @@ public class SignUp extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Instantiate UserDao object.
-        UserDao addNewUser = new UserDao();
+        //Instantiate GenericDao of User object.
+        GenericDao addNewUser = new GenericDao(User.class);
 
         // Get user information from HTML form
         String firstName = request.getParameter("firstName");
