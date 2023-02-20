@@ -3,9 +3,7 @@ package com.rvutracker.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Objects;
-
 
 /**
  * The type Patient
@@ -33,7 +31,8 @@ public class Patient {
     @Column(name = "referralQuestion")
     private String referralQuestion;
 
-    //TODO: Many-to-one report status database
+    @Column(name = "reportStatus")
+    private String reportStatus;
 
     @ManyToOne
     @JoinColumn(name = "userId",
@@ -53,14 +52,16 @@ public class Patient {
      * @param lastName         the last name
      * @param interviewDate    the interview date
      * @param referralQuestion the referral question
+     * @param reportStatus     the report status
      * @param user             the user
      */
     public Patient(String firstName, String lastName, String interviewDate,
-                   String referralQuestion, User user) {
+                   String referralQuestion, String reportStatus, User user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.interviewDate = interviewDate;
         this.referralQuestion = referralQuestion;
+        this.reportStatus = reportStatus;
         this.user = user;
     }
 
@@ -155,6 +156,24 @@ public class Patient {
     }
 
     /**
+     * Gets report status.
+     *
+     * @return the report status
+     */
+    public String getReportStatus() {
+        return reportStatus;
+    }
+
+    /**
+     * Sets report status.
+     *
+     * @param reportStatus the report status
+     */
+    public void setReportStatus(String reportStatus) {
+        this.reportStatus = reportStatus;
+    }
+
+    /**
      * Gets user.
      *
      * @return the user
@@ -178,9 +197,9 @@ public class Patient {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", interviewDate=" + interviewDate +
+                ", interviewDate='" + interviewDate + '\'' +
                 ", referralQuestion='" + referralQuestion + '\'' +
-                ", user=" + user +
+                ", reportStatus=" + reportStatus +
                 '}';
     }
 
@@ -193,11 +212,12 @@ public class Patient {
                 Objects.equals(firstName, patient.firstName) &&
                 Objects.equals(lastName, patient.lastName) &&
                 Objects.equals(interviewDate, patient.interviewDate) &&
-                Objects.equals(referralQuestion, patient.referralQuestion);
+                Objects.equals(referralQuestion, patient.referralQuestion) &&
+                Objects.equals(reportStatus, patient.reportStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, interviewDate, referralQuestion);
+        return Objects.hash(id, firstName, lastName, interviewDate, referralQuestion, reportStatus);
     }
 }
