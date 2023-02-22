@@ -1,0 +1,38 @@
+#auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-logo{
+    display: block;
+}
+
+#auth-form{
+    display: flex;
+    flex-direction: column;
+    padding: 48px;
+    width: 500px;
+    border: 1px solid var(--blue100);
+    border-radius: var(--border-radius);
+    background: white;
+}
+
+#auth-form input {
+    width: 100%;
+}
+
+#auth-form p {
+    text-align: center;
+}
+
+.auth-form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.auth-form-actions button {
+    width: calc(50% - 8px);
+}
+
