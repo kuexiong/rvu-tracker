@@ -1,0 +1,27 @@
+
+/* Generic input layouts */
+
+label {
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid var(--gray300);
+}
+
+button {
+    padding: 12px 32px;
+    font-weight: 600;
+    color: white;
+    background: var(--blue700);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+}
+
+button.secondary {
+    color: var(--blue700);
+    background: white;
+    border-color: var(--blue200);
+}
