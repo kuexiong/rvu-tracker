@@ -1,7 +1,7 @@
 package com.rvutracker.controller;
 
 import com.rvutracker.entity.User;
-import com.rvutracker.persistence.UserDao;
+import com.rvutracker.persistence.GenericDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,14 +48,13 @@ public class SignUp extends HttpServlet {
         //Run method to insert into database.
         addNewUser.insert(user);
 
+        // TODO: make this work
         // Store success message in session to display on JSP
         // when user account has been created.
         HttpSession session = request.getSession();
 
         String sessionMessage = "Account created. Return to login.";
         session.setAttribute("accountCreatedMessage", sessionMessage);
-
-        //TODO: need sign-in servlet
 
         // Redirect browser back to sign-in
         String url = "/index.jsp";
