@@ -14,41 +14,31 @@
 
 ### Week 4
 #### This week's focus is the User Sign Up Story
-- [ ] Create the database
-- [ ] Select Template | Design CSS
-- [ ] new user jsp
-- [ ] add user controller (java class)
-- [ ] user entity (java class)
-- [ ] user table
-- [ ] user dao to add user to db (java class)
-- [ ] unit test dao add user functionality
-- [ ] test round trip (front end to back end)
-- [ ] Weekly reflection
+- [x] Create the database
+- [x] Select Template | Design CSS
+- [x] new user jsp
+- [x] add user controller (java class)
+- [x] user entity (java class)
+- [x] user table
+- [x] user dao to add user to db (java class)
+- [x] unit test dao add user functionality
+- [x] test round trip (front end to back end)
+- [x] Weekly reflection
 
 ### Week 5
-#### This week's focus is the User Sign In Story
-- [ ] Access the database
+#### This week's focus is the Add New Patient Story
+- [x] Create the database
 - [ ] Select Template | Design CSS
-- [ ] user entity (java class)
-- [ ] user table
-- [ ] unit test dao user sign in functionality
+- [ ] new patient jsp
+- [ ] add patient controller (java class)
+- [x] patient entity (java class)
+- [x] patient table
+- [x] patient dao to add patient to db (java class)
+- [x] unit test dao add patient functionality
 - [ ] test round trip (front end to back end)
 - [ ] Weekly reflection
 
 ### Week 6
-#### This week's focus is the Add New Patient Story
-- [ ] Create the database
-- [ ] Select Template | Design CSS
-- [ ] new patient jsp
-- [ ] add patient controller (java class)
-- [ ] patient entity (java class)
-- [ ] patient table
-- [ ] patient dao to add patient to db (java class)
-- [ ] unit test dao add patient functionality
-- [ ] test round trip (front end to back end)
-- [ ] Weekly reflection
-
-### Week 7
 #### This week's focus is the Edit Patient Story
 - [ ] Access the database
 - [ ] Select Template | Design CSS
@@ -59,6 +49,19 @@
 - [ ] unit test dao edit patient functionality
 - [ ] test round trip (front end to back end)
 - [ ] Weekly reflection
+
+### Week 7
+#### This week's focus is the User Sign In Story
+- [ ] Access the database
+- [x] Select Template | Design CSS
+- [ ] user entity (java class)
+- [ ] user table
+- [ ] unit test dao user sign in functionality
+- [ ] test round trip (front end to back end)
+- [ ] Weekly reflection
+
+### Week 8
+#### This week's focus Progress Bar API
 
 Will add remaining weeks as the process above is flushed out.
 
