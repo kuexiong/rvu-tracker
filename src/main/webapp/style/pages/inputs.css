@@ -2,11 +2,13 @@
 /* Generic input layouts */
 
 label {
+    display: flex;
     font-weight: 500;
     line-height: 1.6;
 }
 
 input {
+    display: flex;
     padding: 12px;
     border: 1px solid var(--gray300);
 }
@@ -24,4 +26,23 @@ button.secondary {
     color: var(--blue700);
     background: white;
     border-color: var(--blue200);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+}
+
+.field label {
+    display: block;
+}
+
+.field input {
+    width: 100%;
+}
+
+.field label.required:after {
+    content: "*";
+    color: red;
 }

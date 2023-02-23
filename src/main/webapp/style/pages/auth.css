@@ -27,7 +27,7 @@
 }
 
 .auth-form-actions {
-    display: flex;
+    text-align: left;
     justify-content: space-between;
     margin-bottom: 32px;
 }
