@@ -1,11 +1,11 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/rvu_tracker</property>
+        <property name="connection.url">jdbc:mysql://awseb-e-emyx2iy4yf-stack-awsebrdsdatabase-xvdetimhkuju.cx3l6yqdlyqj.us-east-2.rds.amazonaws.com:3306/rvu_tracker</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
         <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.password">studentstudent</property>
 
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
