@@ -39,11 +39,15 @@ public class PatientList extends HttpServlet {
                       HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Get user
+        // Instantiate GenericDao of User object.
         GenericDao userDao = new GenericDao(User.class);
-        User retrievedUser = new User();
-        retrievedUser = (User)userDao.getById(2);
 
+        //Instantiate GenericDao of Patient object.
+//        GenericDao getPatients = new GenericDao(Patient.class);
+
+        // TODO: get user from sign-in page
+        // Get user by ID.
+        User retrievedUser = (User)userDao.getById(1);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
         //TODO: get patients
