@@ -50,12 +50,9 @@ public class PatientList extends HttpServlet {
         User retrievedUser = (User)userDao.getById(1);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
-        //TODO: get patients
-
-        // Get patients for user
-//        retrievedUser.getPatients();
-
-        // Place patients in session
+        // Get patients for user and puts it in a session
+        request.setAttribute("patients", retrievedUser.getPatients());
+        logger.info("List of patients for user: " + retrievedUser.getPatients());
 
         // Forward request and response to Patient List JSP
         String url = "/patientList.jsp";
