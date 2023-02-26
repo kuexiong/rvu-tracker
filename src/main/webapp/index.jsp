@@ -28,6 +28,7 @@
                 </form>
 
                 <p>Don't have any account yet? <a href="signUp.jsp">Create an account</a></p>
+                <p><a href="/patientListServlet">See list of patients</a></p>
             </div>
         </main>
     </body>
