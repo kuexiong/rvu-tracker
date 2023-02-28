@@ -31,7 +31,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private  int id;
+    private int id;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.EAGER)
