@@ -92,6 +92,11 @@ class PatientDaoTest {
         Patient patientToBeDeleted = (Patient)genericDao.getById(2);
         genericDao.delete(patientToBeDeleted);
         assertNull(genericDao.getById(2));
+
+        //Verifies user hasn't been deleted.
+        GenericDao userDao = new GenericDao(User.class);
+        User intactUser = (User)userDao.getById(1);
+        assertNotNull(intactUser);
     }
 
     /**
