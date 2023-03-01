@@ -128,8 +128,6 @@ public class GenericDao<T> {
 
         openSession();
 
-//        logger.debug("Searching for entity with {} = {}",  propertyName, value);
-
         buildQuery();
         Expression<String> propertyPath = root.get(propertyName);
         query.where(builder.like(propertyPath, "%" + value + "%"));
