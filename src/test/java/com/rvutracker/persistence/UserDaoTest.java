@@ -1,5 +1,6 @@
 package com.rvutracker.persistence;
 
+import com.rvutracker.entity.Patient;
 import com.rvutracker.entity.User;
 import com.rvutracker.test.util.Database;
 import org.apache.logging.log4j.LogManager;
@@ -91,9 +92,13 @@ class UserDaoTest {
      */
     @Test
     void deleteSuccess() {
-        User userToBeDeleted = (User)genericDao.getById(2);
+        User userToBeDeleted = (User)genericDao.getById(1);
         genericDao.delete(userToBeDeleted);
-        assertNull(genericDao.getById(2));
+        assertNull(genericDao.getById(1));
+
+        // Verifies patient(s) of that user are also deleted
+        Patient deletedPatient = (Patient)genericDao.getById(1);
+        assertNull(deletedPatient);
     }
 
     /**
