@@ -36,8 +36,8 @@
 | 2/25/2023 | RVU tracker: Created AWS environment. Got stuck on connecting MySQL to AWS at the command line.                                                              | 3.0   ||
 | 2/26/2023 | RVU tracker: Finally was to connect MySQL to AWS                                                                                                             | 1.0   ||
 | 2/26/2023 | Week 6: Completed peer review                                                                                                                                | 1.0   ||
-|||||
-|||||
+| 2/27/2023 | RVU tracker: Added cptCode and amountBilled tables to database. Initialized entities.                                                                        | 3.0   ||
+| 2/28/2023 | RVU tracker: Added additional codes in unit tests. Added remaining weeks to project plan. Double check project for checkpoint #2 submission.                 | 2.0   ||
 |||||
 |||||
 |||||
