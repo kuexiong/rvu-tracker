@@ -4,6 +4,8 @@
 
 <html>
     <body>
+        <c:import url="navBar.jsp"/>
+
         <h2>Patients </h2>
         <table id="userTable" class="display" cellspacing="0" width="100%">
             <thead>
