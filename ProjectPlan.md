@@ -28,42 +28,92 @@
 ### Week 5
 #### This week's focus is the Add New Patient Story
 - [x] Create the database
-- [ ] Select Template | Design CSS
-- [ ] new patient jsp
-- [ ] add patient controller (java class)
+- [x] Select Template | Design CSS
+- [x] new patient jsp
+- [x] add patient controller (java class)
 - [x] patient entity (java class)
 - [x] patient table
 - [x] patient dao to add patient to db (java class)
 - [x] unit test dao add patient functionality
-- [ ] test round trip (front end to back end)
-- [ ] Weekly reflection
+- [x] test round trip (front end to back end)
+- [x] Weekly reflection
 
 ### Week 6
-#### This week's focus is the Edit Patient Story
-- [ ] Access the database
-- [ ] Select Template | Design CSS
-- [ ] patient controller (java class)
-- [ ] patient entity (java class)
-- [ ] patient table
-- [ ] patient dao to edit patient in db (java class)
-- [ ] unit test dao edit patient functionality
-- [ ] test round trip (front end to back end)
-- [ ] Weekly reflection
+#### This week's focus is connecting to AWS database
+- [x] Create the database
+- [x] Assess the database
+- [x] Design CSS
+- [x] Peer Review
+- [x] Weekly reflection
 
 ### Week 7
 #### This week's focus is the User Sign In Story
-- [ ] Access the database
+- [x] Checkpoint 2
+- [ ] Professional development feedback
+- [ ] AWS Cognito
+- [x] Access the database
 - [x] Select Template | Design CSS
-- [ ] user entity (java class)
-- [ ] user table
 - [ ] unit test dao user sign in functionality
 - [ ] test round trip (front end to back end)
 - [ ] Weekly reflection
 
 ### Week 8
-#### This week's focus Progress Bar API
+#### This week's focus is Progress Bar API
+- [ ] Consume a RESTful web service in your individual project
+- [ ] Create a pojo that represents the response from the service
+- [ ] Create a client that calls the service and maps the response to the pojo
+- [ ] Write a unit test to verify the client and pojo work
+- [ ] Self-eval due
+- [ ] Professional development feedback
+- [ ] Weekly reflection
 
-Will add remaining weeks as the process above is flushed out.
+### Week 9
+#### This week's focus is the Edit Patient Story
+- [ ] Professional development feedback
+- [ ] Team project repository created
+- [ ] Team project problem statement, project plan, etc
+- [ ] Weekly reflection
+
+### Week 10
+#### This week's focus is the team project
+- [ ] Present prof development topic
+- [ ] Professional development feedback
+- [ ] Weekly reflection
+
+### Week 11
+#### This week's focus is the team project
+- [ ] Professional development feedback
+- [ ] Weekly reflection
+
+### Week 12
+#### This week's focus is the team project
+- [ ] Team presentation
+- [ ] Self-evaluation due
+- [ ] Professional development feedback
+- [ ] Weekly reflection
+
+### Week 13
+#### This week's focus is the Add Time Billed Story
+- [ ] Create the database
+- [ ] Select Template | Design CSS
+- [ ] Add Time Billed jsp
+- [ ] Add Time Billed controller (java class)
+- [ ] AmountBilled entity (java class)
+- [ ] CPTCode and AmountBilled table
+- [ ] generic dao to add AmountBilled to db (java class)
+- [ ] unit test dao add time billed functionality
+- [ ] test round trip (front end to back end)
+- [ ] Weekly reflection
+
+### Week 14
+#### This week's focus is the View RVU Accrued Story
+- [ ] Select Template | Design CSS
+- [ ] new RVU Report jsp
+- [ ] add RVU report controller (java class)
+- [ ] generic dao to get data from db (java class)
+- [ ] unit test dao RVU functionality
+- [ ] test round trip (front end to back end)
+- [ ] Weekly reflection
 
 ### Week 15
 - [ ] Final Presentation
