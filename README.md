@@ -28,6 +28,7 @@ and reports.
 ### Design
 * [User Stories](DesignDocuments/userStories.md)
 * [Wireframes](DesignDocuments/wireframes)
+* [Database Design](DesignDocuments/databaseDiagram.png)
 
 ### [Project Plan](ProjectPlan.md)
 
