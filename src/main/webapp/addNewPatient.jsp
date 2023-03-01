@@ -56,7 +56,7 @@
 
                 <div class="patient-form-actions">
                     <button type="submit" class="button" name="" value="">Create Patient</button>
-                    <button type="submit" class="button secondary" name="" value="">Cancel</button>
+                    <button onclick="window.location.href='patientListServlet';" class="button secondary" name="" value="">Cancel</button>
                 </div>
             </form>
         </main>
