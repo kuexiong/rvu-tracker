@@ -21,7 +21,7 @@ import java.util.Properties;
  * @author pwaite
  */
 
-public class Database implements PropertiesLoader{
+public class Database {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     // create an object of the class Database
