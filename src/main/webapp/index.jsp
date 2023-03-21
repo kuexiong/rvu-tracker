@@ -6,6 +6,7 @@
 
 <html>
     <body>
+
         <main id="auth">
             <img class="auth-logo" src="images/RVU-logo.svg" alt="RVU logo">
             <h1>Sign In</h1>
