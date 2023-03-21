@@ -22,7 +22,7 @@ import java.io.IOException;
 @WebServlet(
         urlPatterns = {"/displayPatientInfoServlet"}
 )
-public class displayPatientInfo extends HttpServlet {
+public class DisplayPatientInfo extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
