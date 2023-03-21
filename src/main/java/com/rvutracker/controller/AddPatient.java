@@ -49,7 +49,7 @@ public class AddPatient extends HttpServlet {
 
         // TODO: get user from sign-in page
         // Get user by ID.
-        User retrievedUser = (User)userDao.getById(2);
+        User retrievedUser = (User)userDao.getById(1);
 
         // Instantiate new patient.
         Patient patient = new Patient(firstName, lastName, dateOfInterview,
