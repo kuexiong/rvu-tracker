@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.31, for macos10.15 (x86_64)
 --
--- Host: awseb-e-emyx2iy4yf-stack-awsebrdsdatabase-xvdetimhkuju.cx3l6yqdlyqj.us-east-2.rds.amazonaws.com    Database: rvu_tracker
+-- Host: 127.0.0.1    Database: rvu_tracker
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -14,14 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
-SET @@SESSION.SQL_LOG_BIN= 0;
-
---
--- GTID state at the beginning of the backup 
---
-
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '';
 
 --
 -- Table structure for table `amount_billed`
@@ -128,7 +120,7 @@ CREATE TABLE `user` (
   `password` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_email_uindex` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,10 +129,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Kue','Xiong','kxiong1@madisoncollege.edu','hello'),(2,'Spongebob','Square Pants','sponge@underthesea.com','gary'),(3,'Patrick','Starr','pstarr@gmail.com','starfish'),(4,'Sandy','Squirrel','ssquirrel@gmail.com','astronaut'),(5,'Krusty','Krab','ccrab@gmail.com','burgers'),(6,'Fishman','Guy','fguy@gmail.com','1234');
+INSERT INTO `user` VALUES (1,'Kue','Xiong','kxiong1@madisoncollege.edu','hello'),(2,'Spongebob','Square Pants','sponge@underthesea.com','gary'),(3,'Patrick','Starr','pstarr@gmail.com','starfish'),(4,'Sandy','Squirrel','ssquirrel@gmail.com','astronaut'),(5,'Krusty','Krab','ccrab@gmail.com','burgers'),(6,'Fishman','Guy','fguy@gmail.com','1234'),(7,'Wonder','Woman','ww1984@gmail.com','electricrope');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
-SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -151,4 +142,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 20:55:16
+-- Dump completed on 2023-03-21 22:37:15
