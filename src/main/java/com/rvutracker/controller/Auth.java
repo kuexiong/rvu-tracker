@@ -35,9 +35,7 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -79,7 +77,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
-        String userName = null;
+        List<String> userLoginInfo;
 
         if (authCode == null) {
             //TODO forward to an error page or back to the login
@@ -87,8 +85,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
-                userName = validate(tokenResponse);
-                req.setAttribute("userName", userName);
+                userLoginInfo = validate(tokenResponse);
+                req.setAttribute("username", userLoginInfo.get(3));
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
                 //TODO forward to an error page
@@ -97,7 +95,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 //TODO forward to an error page
             }
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+
+
+        // Upon successfully signing in, user is taken to Patient List
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/patientListServlet");
         dispatcher.forward(req, resp);
 
     }
@@ -130,11 +131,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     /**
      * Get values out of the header to verify the token is legit. If it is legit, get the claims from it, such
      * as username.
+     *
      * @param tokenResponse
      * @return
      * @throws IOException
      */
-    private String validate(TokenResponse tokenResponse) throws IOException {
+    private List<String> validate(TokenResponse tokenResponse) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -174,12 +176,27 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String userName = jwt.getClaim("cognito:username").asString();
         logger.debug("here's the username: " + userName);
 
+        String firstName = jwt.getClaim("name").asString();
+        logger.debug("here's the first name: " + firstName);
+
+        String lastName = jwt.getClaim("family_name").asString();
+        logger.debug("here's the last name: " + lastName);
+
+        String email = jwt.getClaim("email").asString();
+        logger.debug("here's the email: " + email);
+
         logger.debug("here are all the available claims: " + jwt.getClaims());
 
-        // TODO decide what you want to do with the info!
+        // TODO decide what you want to do with the info! <--store username in session
         // for now, I'm just returning username for display back to the browser
 
-        return userName;
+        List<String> userLoginInfo = new ArrayList<>();
+        userLoginInfo.add(firstName);
+        userLoginInfo.add(lastName);
+        userLoginInfo.add(email);
+        userLoginInfo.add(userName);
+
+        return userLoginInfo;
     }
 
     /** Create the auth url and use it to build the request.
