@@ -46,6 +46,9 @@ public class PatientList extends HttpServlet {
 //        GenericDao getPatients = new GenericDao(Patient.class);
 
         // TODO: get user from sign-in page
+        String sessionUser = (String) request.getAttribute("username");
+        logger.info("The username in session is: " + sessionUser);
+
         // Get user by ID.
         User retrievedUser = (User)userDao.getById(1);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
