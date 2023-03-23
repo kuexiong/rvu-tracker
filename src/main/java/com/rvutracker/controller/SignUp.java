@@ -40,10 +40,11 @@ public class SignUp extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         // Instantiate new user.
-        User user = new User(firstName, lastName, email, password);
+        User user = new User(firstName, lastName, email, username, password);
 
         //Run method to insert into database.
         addNewUser.insert(user);
