@@ -23,6 +23,10 @@
                     <input id="email" type="text" name="email" required/>
                     <br/><br/>
 
+                    <label for="username">Username</label><br/>
+                    <input id="username" type="text" name="username" required/>
+                    <br/><br/>
+
                     <label for="password">Password</label><br/>
                     <input id="password" type="text" name="password" required/>
                     <br/><br/>
