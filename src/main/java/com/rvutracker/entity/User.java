@@ -25,8 +25,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "username")
+    private String username;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -49,13 +49,12 @@ public class User {
      * @param firstName the first name
      * @param lastName  the last name
      * @param email     the email
-     * @param password  the password
      */
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String username) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.username = username;
     }
 
     /**
@@ -130,22 +129,23 @@ public class User {
         this.email = email;
     }
 
+
     /**
-     * Gets user's password.
+     * Gets username.
      *
-     * @return user's password
+     * @return the username
      */
-    public String getPassword() {
-        return password;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * Sets user's password.
+     * Sets username.
      *
-     * @param password user's password
+     * @param username the username
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -185,12 +185,12 @@ public class User {
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password);
+                Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, password, id);
+        return Objects.hash(firstName, lastName, email, username, id);
     }
 
     @Override
@@ -199,6 +199,7 @@ public class User {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
                 ", id=" + id +
                 '}';
     }
