@@ -117,9 +117,10 @@ CREATE TABLE `user` (
   `firstName` varchar(25) DEFAULT NULL,
   `lastName` varchar(30) DEFAULT NULL,
   `email` varchar(225) DEFAULT NULL,
+  `username` varchar(30) DEFAULT NULL,
   `password` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_email_uindex` (`email`)
+  UNIQUE KEY `user_username_uindex` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,7 +130,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Kue','Xiong','kxiong1@madisoncollege.edu','hello'),(2,'Spongebob','Square Pants','sponge@underthesea.com','gary'),(3,'Patrick','Starr','pstarr@gmail.com','starfish'),(4,'Sandy','Squirrel','ssquirrel@gmail.com','astronaut'),(5,'Krusty','Krab','ccrab@gmail.com','burgers'),(6,'Fishman','Guy','fguy@gmail.com','1234'),(7,'Wonder','Woman','ww1984@gmail.com','electricrope');
+INSERT INTO `user` VALUES (1,'Kue','Xiong','kxiong1@madisoncollege.edu','kxiong1','hello'),(2,'Spongebob','Square Pants','sponge@underthesea.com','sponge','gary'),(3,'Patrick','Starr','pstarr@gmail.com','pstarr','starfish'),(4,'Sandy','Squirrel','ssquirrel@gmail.com','ssquirrel','astronaut');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -142,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-21 22:37:15
+-- Dump completed on 2023-03-22 21:37:49
