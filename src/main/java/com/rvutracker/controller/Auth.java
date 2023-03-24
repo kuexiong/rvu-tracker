@@ -8,6 +8,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.rvutracker.auth.*;
+import com.rvutracker.entity.User;
+import com.rvutracker.persistence.GenericDao;
 import com.rvutracker.util.PropertiesLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -100,6 +102,22 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // Upon successfully signing in, user is taken to Patient List
         RequestDispatcher dispatcher = req.getRequestDispatcher("/patientListServlet");
         dispatcher.forward(req, resp);
+
+    }
+
+    // Check if user exist in User table
+    public void checkDatabaseForUser(String firstName, String lastName,
+                                     String email, String username) {
+        GenericDao userDao = new GenericDao(User.class);
+        List<User> usersDatabase = (List<User>) userDao.getByEmail(email);
+        logger.info("The list of database users are: " + usersDatabase);
+        logger.info(usersDatabase.contains(email));
+        // Add user to table if doesn't already exist
+        if (usersDatabase.contains(email) == false) {
+            logger.info("The email to check is: " + email);
+            User user = new User(firstName, lastName, email, username);
+            userDao.insert(user);
+        }
 
     }
 
