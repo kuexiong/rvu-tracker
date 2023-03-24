@@ -59,6 +59,7 @@ class UserDaoTest {
     @Test
     void getByEmailSuccess() {
         List<User> users = (List<User>) genericDao.getByEmail("kxiong1@madisoncollege.edu");
+        logger.info("Get users by email results: " + users);
         assertEquals(1, users.size());
     }
 

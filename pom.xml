@@ -24,6 +24,7 @@
     <java-jwt-version>3.4.1</java-jwt-version>
     <json-version>20170516</json-version>
     <commons-io-version>2.11.0</commons-io-version>
+    <javax.servlet.version>3.1.0</javax.servlet.version>
   </properties>
 
 
@@ -114,6 +115,13 @@
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>${commons-io-version}</version>
+    </dependency>
+
+    <!--servlet-api    -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${javax.servlet.version}</version>
     </dependency>
   </dependencies>
 
