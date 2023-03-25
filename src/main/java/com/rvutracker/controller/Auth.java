@@ -106,6 +106,16 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             }
         }
 
+        // Check if user exist in User table. Add user if not found.
+        checkDatabaseForUser(firstName, lastName, email, username);
+
+        // Put user information in session
+        HttpSession session = req.getSession();
+
+        session.setAttribute("firstName", firstName);
+        session.setAttribute("lastName", lastName);
+        session.setAttribute("email", email);
+        session.setAttribute("username", username);
 
         // Upon successfully signing in, user is taken to Patient List
         RequestDispatcher dispatcher = req.getRequestDispatcher("/patientListServlet");
