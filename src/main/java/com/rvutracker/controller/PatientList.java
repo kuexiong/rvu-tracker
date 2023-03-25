@@ -1,6 +1,7 @@
 package com.rvutracker.controller;
 
 
+import com.rvutracker.entity.Patient;
 import com.rvutracker.entity.User;
 import com.rvutracker.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -42,15 +44,14 @@ public class PatientList extends HttpServlet {
         // Instantiate GenericDao of User object.
         GenericDao userDao = new GenericDao(User.class);
 
-        //Instantiate GenericDao of Patient object.
-//        GenericDao getPatients = new GenericDao(Patient.class);
+        // Get username from session
+        HttpSession session = request.getSession(false);
 
-        // TODO: get user from sign-in page
-        String sessionUser = (String) request.getAttribute("username");
-        logger.info("The username in session is: " + sessionUser);
+        int sessionUser = (int)session.getAttribute("id");
+        logger.info("The id in session is: " + sessionUser);
 
-        // Get user by ID.
-        User retrievedUser = (User)userDao.getById(1);
+        // Get user by id
+        User retrievedUser = (User)userDao.getById(sessionUser);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
         // Get patients for user and puts it in a session
