@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -81,6 +82,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String authCode = req.getParameter("code");
         List<String> userLoginInfo;
 
+        String firstName = null;
+        String lastName = null;
+        String email = null;
+        String username = null;
         if (authCode == null) {
             //TODO forward to an error page or back to the login
         } else {
@@ -88,7 +93,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userLoginInfo = validate(tokenResponse);
-                req.setAttribute("username", userLoginInfo.get(3));
+                firstName = userLoginInfo.get(0);
+                lastName = userLoginInfo.get(1);
+                email = userLoginInfo.get(2);
+                username = userLoginInfo.get(3);
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
                 //TODO forward to an error page
@@ -118,7 +126,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             User user = new User(firstName, lastName, email, username);
             userDao.insert(user);
         }
-
     }
 
     /**
