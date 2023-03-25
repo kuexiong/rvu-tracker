@@ -3,6 +3,8 @@ package com.rvutracker.controller;
 import com.rvutracker.entity.Patient;
 import com.rvutracker.entity.User;
 import com.rvutracker.persistence.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +24,8 @@ import java.io.IOException;
         urlPatterns = {"/addPatientServlet"}
 )
 public class AddPatient extends HttpServlet {
+
+    private final Logger logger = LogManager.getLogger(this.getClass());
     /**
      * Handles HTTP POST requests
      *
@@ -47,9 +51,15 @@ public class AddPatient extends HttpServlet {
         String referralQuestion = request.getParameter("referralQuestion");
         String reportStatus = request.getParameter("reportStatus");
 
-        // TODO: get user from sign-in page
-        // Get user by ID.
-        User retrievedUser = (User)userDao.getById(1);
+        // Get username from session
+        HttpSession session = request.getSession(false);
+
+        int sessionUserId = (int)session.getAttribute("id");
+        logger.info("The id in session is: " + sessionUserId);
+
+        // Get user by id
+        User retrievedUser = (User)userDao.getById(sessionUserId);
+        logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
         // Instantiate new patient.
         Patient patient = new Patient(firstName, lastName, dateOfInterview,
