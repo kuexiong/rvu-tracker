@@ -1,0 +1,78 @@
+/* Buttons */
+
+.button,
+button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 32px;
+    font-weight: 600;
+    color: white;
+    background: var(--blue700);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    transition: all 200ms ease-out;
+}
+
+.button:not(.active),
+button:not(.active) {
+    cursor: pointer;
+}
+
+.button.secondary,
+button.secondary {
+    color: var(--blue700);
+    background: white;
+    border-color: var(--blue200);
+}
+
+.button.secondary:hover,
+button.secondary:hover {
+    border-color: var(--blue400);
+}
+
+.button.secondary.active,
+button.secondary.active {
+    background: var(--gray50);
+    border-color: var(--blue100);
+}
+
+.button img,
+button img {
+    margin-right: 8px;
+}
+
+/* Inputs and Fields */
+
+label {
+    display: flex;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+input {
+    display: flex;
+    padding: 12px;
+    border: 1px solid var(--gray300);
+}
+
+/* Fields */
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+}
+
+.field label {
+    display: block;
+}
+
+.field input:not(input[type='date'],
+input[type='list']) {
+    width: 100%;
+}
+
+.field label.required:after {
+    content: "*";
+    color: red;
+}
