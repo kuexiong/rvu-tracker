@@ -81,11 +81,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
         List<String> userLoginInfo;
-
+        logger.info("This is the start of the doGet method.");
         String firstName = null;
         String lastName = null;
         String email = null;
         String username = null;
+        int userID = 0;
+
         if (authCode == null) {
             //TODO forward to an error page or back to the login
         } else {
@@ -94,6 +96,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userLoginInfo = validate(tokenResponse);
                 firstName = userLoginInfo.get(0);
+                logger.info("First Name from token is: " + firstName);
                 lastName = userLoginInfo.get(1);
                 email = userLoginInfo.get(2);
                 username = userLoginInfo.get(3);
@@ -107,7 +110,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         }
 
         // Check if user exist in User table. Add user if not found.
-        checkDatabaseForUser(firstName, lastName, email, username);
+        userID = checkDatabaseForUser(firstName, lastName, email, username);
 
         // Put user information in session
         HttpSession session = req.getSession();
@@ -116,26 +119,36 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         session.setAttribute("lastName", lastName);
         session.setAttribute("email", email);
         session.setAttribute("username", username);
+        session.setAttribute("id", userID);
+        logger.info("User information has been added to session");
 
         // Upon successfully signing in, user is taken to Patient List
         RequestDispatcher dispatcher = req.getRequestDispatcher("/patientListServlet");
         dispatcher.forward(req, resp);
-
     }
 
     // Check if user exist in User table
-    public void checkDatabaseForUser(String firstName, String lastName,
-                                     String email, String username) {
+    public int checkDatabaseForUser(String firstName, String lastName,
+                                    String email, String username) {
+        int id;
+
         GenericDao userDao = new GenericDao(User.class);
         List<User> usersDatabase = (List<User>) userDao.getByEmail(email);
+        logger.info("The email to check is: " + email);
         logger.info("The list of database users are: " + usersDatabase);
-        logger.info(usersDatabase.contains(email));
+        logger.info(usersDatabase.stream().anyMatch(user -> email.equals(user.getEmail())));
         // Add user to table if doesn't already exist
-        if (usersDatabase.contains(email) == false) {
-            logger.info("The email to check is: " + email);
+        if (usersDatabase.stream().anyMatch(user -> email.equals(user.getEmail())) == false) {
+            logger.info("Got into the if-statement");
             User user = new User(firstName, lastName, email, username);
-            userDao.insert(user);
+            id = userDao.insert(user);
+            logger.info("User has been added to USER table");
+        } else {
+            id = usersDatabase.get(0).getId();
+            logger.info("Retrieved user ID is: " + id);
         }
+
+        return id;
     }
 
     /**
