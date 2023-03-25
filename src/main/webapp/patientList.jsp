@@ -2,11 +2,11 @@
 <c:set var="pageStyle" value="patientList" />
 <%@include file="head.jsp"%>
 
-<%--<script type="text/javascript" class="init">--%>
-<%--    $(document).ready( function () {--%>
-<%--        $('#patientTable').DataTable();--%>
-<%--    } );--%>
-<%--</script>--%>
+<script type="text/javascript" class="init">
+    $(document).ready( function () {
+        $('#patientTable').DataTable();
+    } );
+</script>
 
 <html>
     <body>
@@ -15,7 +15,7 @@
         <h1>The user is: ${firstName}</h1>
 
         <h2>Patients </h2>
-        <table>
+        <table id="patientTable" class="display" cellspacing="0" width="100%">
             <thead>
             <th>First Name</th>
             <th>Last Name</th>
