@@ -38,6 +38,19 @@
 | 2/26/2023 | Week 6: Completed peer review                                                                                                                                | 1.0   ||
 | 2/27/2023 | RVU tracker: Added cptCode and amountBilled tables to database. Initialized entities.                                                                        | 3.0   ||
 | 2/28/2023 | RVU tracker: Added additional codes in unit tests. Added remaining weeks to project plan. Double check project for checkpoint #2 submission.                 | 2.0   ||
+| 3/1/2023  | Week 7: Amazon Cognito readings                                                                                                                              | 0.68  ||
+| 3/3/2023  | Week 7: Cognito exercise                                                                                                                                     | 2.85  ||
+| 3/4/2023  | Week 7: SSL activity                                                                                                                                         | 1.5   ||
+| 3/6/2023  | Week 7: Watched professional development presentations and provided feedback                                                                                 | 1.0   ||
+| 3/18/2023 | Week 8: readings and videos                                                                                                                                  | 1.25  ||
+| 3/20/2023 | RVU tracker: Researched API documentation, debug mysql time zone issue, signed up again for AWS and created new environment                                  | 3.5   ||
+| 3/21/2023 | Team project: first meeting -- team resume, charter, brainstormed ideas, set repository                                                                      | 1.5   ||
+| 3/21/2023 | RVU tracker: Connected to AWS database, copied over auth package and other classes for cognito                                                               | 2.0   ||
+| 3/22/2023 | RVU tracker: Implemented cognito to project, WIP put user in session and display username on jsp                                                             | 4.0   ||
+| 3/23/2023 | RVU tracker: method to verify and add user to USER table                                                                                                     | 2.5   ||
+| 3/24/2023 | RVU tracker: debug method, unit test method, navbar css                                                                                                      | 4.5   ||
+| 3/25/2023 | RVU tracker: https certification, deploying in AWS, debug jdbc connection error                                                                              | 2.5   ||
 |||||
 |||||
-|||||
+
+
