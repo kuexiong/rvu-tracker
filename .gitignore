@@ -9,6 +9,7 @@
 .idea/jsLibraryMappings.xml
 src/main/resources/cognito.properties
 src/main/resources/users.txt
+src/main/.ebextensions/https-instance.config
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
