@@ -49,13 +49,13 @@
 ### Week 7
 #### This week's focus is the User Sign In Story
 - [x] Checkpoint 2
-- [ ] Professional development feedback
-- [ ] AWS Cognito
+- [x] Professional development feedback
+- [x] AWS Cognito
 - [x] Access the database
 - [x] Select Template | Design CSS
-- [ ] unit test dao user sign in functionality
-- [ ] test round trip (front end to back end)
-- [ ] Weekly reflection
+- [x] unit test dao user sign in functionality
+- [x] test round trip (front end to back end)
+- [x] Weekly reflection
 
 ### Week 8
 #### This week's focus is Progress Bar API
@@ -70,8 +70,8 @@
 ### Week 9
 #### This week's focus is the Edit Patient Story
 - [ ] Professional development feedback
-- [ ] Team project repository created
-- [ ] Team project problem statement, project plan, etc
+- [x] Team project repository created
+- [x] Team project problem statement, project plan, etc
 - [ ] Weekly reflection
 
 ### Week 10
