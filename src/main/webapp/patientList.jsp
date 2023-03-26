@@ -12,7 +12,7 @@
     <body>
         <c:import url="navBar.jsp"/>
 
-        <h1>The user is: ${firstName}</h1>
+        <h1>Hello ${firstName}!</h1>
 
         <h2>Patients </h2>
         <table id="patientTable" class="display" cellspacing="0" width="100%">
