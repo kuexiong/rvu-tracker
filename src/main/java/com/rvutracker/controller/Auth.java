@@ -115,10 +115,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // Put user information in session
         HttpSession session = req.getSession();
 
-        session.setAttribute("firstName", firstName);
-        session.setAttribute("lastName", lastName);
-        session.setAttribute("email", email);
-        session.setAttribute("username", username);
         session.setAttribute("id", userID);
         logger.info("User information has been added to session");
 
