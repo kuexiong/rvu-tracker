@@ -11,6 +11,8 @@ src/main/resources/cognito.properties
 src/main/resources/users.txt
 src/main/.ebextensions
 src/main/.platform
+src/main/resources
+src/test/resources
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
