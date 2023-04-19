@@ -1,5 +1,6 @@
 <%@include file="taglib.jsp"%>
 <c:set var="pageStyle" value="patientList" />
+<c:set var="user" value='${requestScope["user"]}' />
 <%@include file="head.jsp"%>
 
 <script type="text/javascript" class="init">
@@ -12,7 +13,7 @@
     <body>
         <c:import url="navBar.jsp"/>
 
-        <h1>Hello ${firstName}!</h1>
+        <h1>Hello ${user.firstName}!</h1>
 
         <h2>Patients </h2>
         <table id="patientTable" class="display" cellspacing="0" width="100%">
