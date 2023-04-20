@@ -9,7 +9,8 @@ import java.util.Set;
 
 //TODO: need to unit test
 /**
- * The type CptCode
+ * The type CptCode for cpt_code table,
+ * which is a reference table.
  *
  * @author Kue Xiong
  */
@@ -18,8 +19,8 @@ import java.util.Set;
 public class CptCode {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cptCodeId", nullable = false)
     private int id;
 
     @Column(name = "cptCode")
@@ -31,7 +32,7 @@ public class CptCode {
     @Column(name = "rvuValue")
     private float rvuValue;
 
-    @OneToMany(mappedBy = "cpt_code", cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "cptCodeId", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<AmountBilled> amountBilled = new HashSet<>();
 
@@ -44,13 +45,11 @@ public class CptCode {
     /**
      * Instantiates a new Cpt code.
      *
-     * @param id                 the id
      * @param cptCode            the cpt code
      * @param cptCodeDescription the cpt code description
      * @param rvuValue           the rvu value
      */
-    public CptCode(int id, int cptCode, String cptCodeDescription, float rvuValue) {
-        this.id = id;
+    public CptCode(int cptCode, String cptCodeDescription, float rvuValue) {
         this.cptCode = cptCode;
         this.cptCodeDescription = cptCodeDescription;
         this.rvuValue = rvuValue;
