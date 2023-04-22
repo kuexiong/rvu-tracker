@@ -22,7 +22,7 @@ class PatientDaoTest {
     GenericDao genericDao;
 
     /**
-     * Creates the GenericDao and resets patient database
+     * Creates the GenericDao and resets patient table
      * with original content.
      */
     @BeforeEach
