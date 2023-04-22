@@ -26,10 +26,10 @@
             <tbody>
             <c:forEach var="patient" items="${patients}">
                 <tr>
-                    <td>${patient.firstName}</td>
-                    <td>${patient.lastName}</td>
-                    <td>${patient.interviewDate}</td>
-                    <td>${patient.reportStatus}</td>
+                    <td><a href="editPatient.jsp">${patient.firstName}</a></td>
+                    <td><a href="editPatient.jsp">${patient.lastName}</a></td>
+                    <td><a href="editPatient.jsp">${patient.interviewDate}</a></td>
+                    <td><a href="editPatient.jsp">${patient.reportStatus}</a></td>
                 </tr>
             </c:forEach>
             </tbody>
