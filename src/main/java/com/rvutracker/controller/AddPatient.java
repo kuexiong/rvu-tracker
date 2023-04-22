@@ -72,7 +72,7 @@ public class AddPatient extends HttpServlet {
 
         // TODO: redirect browser back to patient list
         // Redirect browser back to add new patient
-        String url = "/addNewPatient.jsp";
+        String url = "/patientListServlet";
         response.sendRedirect(request.getContextPath() + url);
     }
 }
