@@ -1,5 +1,7 @@
 package com.rvutracker.persistence;
 
+import com.rvutracker.entity.CptCode;
+import com.rvutracker.entity.Patient;
 import com.rvutracker.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,10 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 public class GenericDao<T> {
@@ -115,6 +114,27 @@ public class GenericDao<T> {
         session.delete(entity);
         transaction.commit();
         session.close();
+    }
+
+    /**
+     * Gets by patient code ids.
+     *
+     * @param patientid the patientid
+     * @param codeid    the codeid
+     * @return the by patient code ids
+     */
+    public List<T> getByPatientCodeIds(int patientid, int codeid) {
+        openSession();
+        buildQuery();
+
+        Predicate patient = builder.equal(root.get("patientid"), patientid);
+        Predicate code = builder.equal(root.get("cptcodeid"), codeid);
+
+        query.select(root).where(builder.and(patient, code));
+        List<T> entities = session.createQuery(query).getResultList();
+        session.close();
+        return entities;
+
     }
 
     /**
