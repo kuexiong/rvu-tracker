@@ -3,7 +3,9 @@ package com.rvutracker.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * The type Patient
@@ -38,6 +40,10 @@ public class Patient {
     @JoinColumn(name = "userId",
             foreignKey = @ForeignKey(name = "patient_user_id_fk"))
     private User user;
+
+    @OneToMany(mappedBy = "patientid",cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<AmountBilled> amountBilled = new LinkedHashSet<>();
 
     /**
      * Instantiates a new Patient
@@ -189,6 +195,24 @@ public class Patient {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * Gets amount billed.
+     *
+     * @return the amount billed
+     */
+    public Set<AmountBilled> getAmountBilled() {
+        return amountBilled;
+    }
+
+    /**
+     * Sets amount billed.
+     *
+     * @param amountBilled the amount billed
+     */
+    public void setAmountBilled(Set<AmountBilled> amountBilled) {
+        this.amountBilled = amountBilled;
     }
 
     @Override
