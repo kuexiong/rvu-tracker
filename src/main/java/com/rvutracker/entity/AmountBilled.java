@@ -18,30 +18,33 @@ import static javax.persistence.AccessType.PROPERTY;
  * @author Kue Xiong
  */
 @Entity
-@Table(name = "amount_billed")
+@Table(name = "amountbilled")
 public class AmountBilled {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "billingId", nullable = false)
-    @Access(value = PROPERTY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "id")
+//    @Access(value = PROPERTY)
     private Integer id;
 
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "timeStamp")
+    @Column(name = "timestamp")
     private Timestamp timestamp;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JoinColumn(name = "patientId")
-    private Patient patientId;
+    @JoinColumn(name = "patientid")
+    private Patient patientid;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JoinColumn(name = "cptCodeId")
-    private CptCode cptCodeId;
+    @JoinColumn(name = "cptcodeid")
+    private CptCode cptcodeid;
 
     /**
      * Instantiates a new Amount billed.
@@ -54,14 +57,32 @@ public class AmountBilled {
      *
      * @param quantity  the quantity
      * @param timestamp the timestamp
-     * @param patientId the patient id
-     * @param cptCodeId the cpt code id
+     * @param patientid the patient id
+     * @param cptcodeid the cpt code id
      */
-    public AmountBilled(int quantity, Timestamp timestamp, Patient patientId, CptCode cptCodeId) {
+    public AmountBilled(int quantity, Timestamp timestamp, Patient patientid, CptCode cptcodeid) {
         this.quantity = quantity;
         this.timestamp = timestamp;
-        this.patientId = patientId;
-        this.cptCodeId = cptCodeId;
+        this.patientid = patientid;
+        this.cptcodeid = cptcodeid;
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
@@ -106,7 +127,7 @@ public class AmountBilled {
      * @return the patient id
      */
     public Patient getPatientId() {
-        return patientId;
+        return patientid;
     }
 
     /**
@@ -115,7 +136,7 @@ public class AmountBilled {
      * @param patientId the patient id
      */
     public void setPatientId(Patient patientId) {
-        this.patientId = patientId;
+        this.patientid = patientId;
     }
 
     /**
@@ -124,7 +145,7 @@ public class AmountBilled {
      * @return the cpt code id
      */
     public CptCode getCptCodeId() {
-        return cptCodeId;
+        return cptcodeid;
     }
 
     /**
@@ -133,7 +154,7 @@ public class AmountBilled {
      * @param cptCodeId the cpt code id
      */
     public void setCptCodeId(CptCode cptCodeId) {
-        this.cptCodeId = cptCodeId;
+        this.cptcodeid = cptcodeid;
     }
 
     @Override
@@ -144,13 +165,13 @@ public class AmountBilled {
         return quantity == that.quantity &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(timestamp, that.timestamp) &&
-                Objects.equals(patientId, that.patientId) &&
-                Objects.equals(cptCodeId, that.cptCodeId);
+                Objects.equals(patientid, that.patientid) &&
+                Objects.equals(cptcodeid, that.cptcodeid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantity, timestamp, patientId, cptCodeId);
+        return Objects.hash(id, quantity, timestamp, patientid, cptcodeid);
     }
 
     @Override
@@ -159,8 +180,8 @@ public class AmountBilled {
                 "id=" + id +
                 ", quantity=" + quantity +
                 ", timestamp=" + timestamp +
-                ", patientId=" + patientId +
-                ", cptCodeId=" + cptCodeId +
+                ", patientId=" + patientid +
+                ", cptCodeId=" + cptcodeid +
                 '}';
     }
 }
