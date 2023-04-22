@@ -4,37 +4,37 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
-//TODO: need to unit test
 /**
- * The type CptCode for cpt_code table,
+ * The type CptCode for cptCode table,
  * which is a reference table.
  *
  * @author Kue Xiong
  */
 @Entity(name = "CptCode")
-@Table(name = "cpt_code")
+@Table(name = "cptcode")
 public class CptCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cptCodeId", nullable = false)
+    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "cptCode")
-    private int cptCode;
+    @Column(name = "code")
+    private int code;
 
-    @Column(name = "cptCodeDescription")
-    private String cptCodeDescription;
+    @Column(name = "codedescription")
+    private String codeDescription;
 
-    @Column(name = "rvuValue")
+    @Column(name = "rvuvalue")
     private float rvuValue;
 
-    @OneToMany(mappedBy = "cptCodeId", cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "cptcodeid", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<AmountBilled> amountBilled = new HashSet<>();
+    private Set<AmountBilled> amountBilled = new LinkedHashSet<>();
 
     /**
      * Instantiates a new CptCode
@@ -45,13 +45,13 @@ public class CptCode {
     /**
      * Instantiates a new Cpt code.
      *
-     * @param cptCode            the cpt code
-     * @param cptCodeDescription the cpt code description
+     * @param code            the cpt code
+     * @param codeDescription the cpt code description
      * @param rvuValue           the rvu value
      */
-    public CptCode(int cptCode, String cptCodeDescription, float rvuValue) {
-        this.cptCode = cptCode;
-        this.cptCodeDescription = cptCodeDescription;
+    public CptCode(int code, String codeDescription, float rvuValue) {
+        this.code = code;
+        this.codeDescription = codeDescription;
         this.rvuValue = rvuValue;
     }
 
@@ -65,12 +65,21 @@ public class CptCode {
     }
 
     /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
      * Gets cpt code.
      *
      * @return the cpt code
      */
-    public int getCptCode() {
-        return cptCode;
+    public int getCode() {
+        return code;
     }
 
     /**
@@ -78,8 +87,8 @@ public class CptCode {
      *
      * @return the cpt code description
      */
-    public String getCptCodeDescription() {
-        return cptCodeDescription;
+    public String getCodeDescription() {
+        return codeDescription;
     }
 
     /**
@@ -115,22 +124,22 @@ public class CptCode {
         if (o == null || getClass() != o.getClass()) return false;
         CptCode cptCode1 = (CptCode) o;
         return id == cptCode1.id &&
-                cptCode == cptCode1.cptCode &&
+                code == cptCode1.code &&
                 Float.compare(cptCode1.rvuValue, rvuValue) == 0 &&
-                Objects.equals(cptCodeDescription, cptCode1.cptCodeDescription);
+                Objects.equals(codeDescription, cptCode1.codeDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cptCode, cptCodeDescription, rvuValue);
+        return Objects.hash(id, code, codeDescription, rvuValue);
     }
 
     @Override
     public String toString() {
         return "CptCode{" +
                 "id=" + id +
-                ", cptCode=" + cptCode +
-                ", cptCodeDescription='" + cptCodeDescription + '\'' +
+                ", cptCode=" + code +
+                ", cptCodeDescription='" + codeDescription + '\'' +
                 ", rvuValue=" + rvuValue +
                 '}';
     }
