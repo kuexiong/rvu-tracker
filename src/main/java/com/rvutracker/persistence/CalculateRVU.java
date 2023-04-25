@@ -61,6 +61,13 @@ public class CalculateRVU {
 
         // Loop through array to add quantity and code to each month
         for(AmountBilled charge : allCharges) {
+
+            int quantity = charge.getQuantity();
+            CptCode code = charge.getCptCodeId();
+            int cptCode = code.getCode();
+
+            logger.info("The CPT code is " + cptCode + " and the quantity is: " + quantity);
+
             Timestamp timestamp = charge.getTimestamp();
             cal = Calendar.getInstance();
             cal.setTime(new Date(timestamp.getTime()));
