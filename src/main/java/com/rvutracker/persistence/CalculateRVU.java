@@ -20,19 +20,19 @@ public class CalculateRVU {
     private Calendar cal;
     private int month;
 
-    private Map<Integer, Integer> january;
-    private Map<Integer, Integer> february;
-    private Map<Integer, Integer> march;
-    private Map<Integer, Integer> april;
-    private Map<Integer, Integer> may;
-    private Map<Integer, Integer> june;
-    private Map<Integer, Integer> july;
-    private Map<Integer, Integer> august;
-    private Map<Integer, Integer> september;
-    private Map<Integer, Integer> october;
-    private Map<Integer, Integer> november;
-    private Map<Integer, Integer> december;
-    private List<Map<Integer, Integer>> months;
+    private Map<String, Float> january;
+    private Map<String, Float> february;
+    private Map<String, Float> march;
+    private Map<String, Float> april;
+    private Map<String, Float> may;
+    private Map<String, Float> june;
+    private Map<String, Float> july;
+    private Map<String, Float> august;
+    private Map<String, Float> september;
+    private Map<String, Float> october;
+    private Map<String, Float> november;
+    private Map<String, Float> december;
+    private Map<String, Map<String, Float>> months;
 
     /**
      * Gets current month.
@@ -62,11 +62,11 @@ public class CalculateRVU {
         // Loop through array to add quantity and code to each month
         for(AmountBilled charge : allCharges) {
 
-            int quantity = charge.getQuantity();
+            float quantity = (float) charge.getQuantity();
             CptCode code = charge.getCptCodeId();
-            int cptCode = code.getCode();
+            String rvuValue = String.valueOf(code.getRvuValue());
 
-            logger.info("The CPT code is " + cptCode + " and the quantity is: " + quantity);
+            logger.info("The CPT code is " + rvuValue + " and the quantity is: " + quantity);
 
             Timestamp timestamp = charge.getTimestamp();
             cal = Calendar.getInstance();
@@ -82,34 +82,35 @@ public class CalculateRVU {
             if (cal.after(fiscalYearFrom) && cal.before(fiscalYearTo)) {
                 logger.info("Got into the if statement");
                 if (month == 1) {
-                    january.put(cptCode, quantity);
+                    january.put(rvuValue, quantity);
                 } else if (month == 2) {
-                    february.put(cptCode, quantity);
+                    february.put(rvuValue, quantity);
                 } else if (month == 3) {
-                    march.put(cptCode, quantity);
+                    march.put(rvuValue, quantity);
                 } else if (month == 4) {
-                    april.put(cptCode, quantity);
+                    april.put(rvuValue, quantity);
                 } else if (month == 5) {
-                    may.put(cptCode, quantity);
+                    may.put(rvuValue, quantity);
                 } else if (month == 6) {
-                    june.put(cptCode, quantity);
+                    june.put(rvuValue, quantity);
                 } else if (month == 7) {
-                    july.put(cptCode, quantity);
+                    july.put(rvuValue, quantity);
                 } else if (month == 8) {
-                    august.put(cptCode, quantity);
+                    august.put(rvuValue, quantity);
                 } else if (month == 9) {
-                    september.put(cptCode, quantity);
+                    september.put(rvuValue, quantity);
                 } else if (month == 10) {
-                    october.put(cptCode, quantity);
+                    october.put(rvuValue, quantity);
                 } else if (month == 11) {
-                    november.put(cptCode, quantity);
+                    november.put(rvuValue, quantity);
                 } else {
-                    december.put(cptCode, quantity);
+                    december.put(rvuValue, quantity);
                 }
             }
         }
 
         addMonthlyChargesToArraylist();
+        calculateMonthlyRVUCount();
     }
 
     /**
@@ -148,18 +149,18 @@ public class CalculateRVU {
     public void initializeInstanceVariables() {
         genericDao = new GenericDao(AmountBilled.class);
 
-        january = new LinkedHashMap<Integer, Integer>();
-        february = new LinkedHashMap<Integer, Integer>();
-        march = new LinkedHashMap<Integer, Integer>();
-        april = new LinkedHashMap<Integer, Integer>();
-        may = new LinkedHashMap<Integer, Integer>();
-        june = new LinkedHashMap<Integer, Integer>();
-        july = new LinkedHashMap<Integer, Integer>();
-        august = new LinkedHashMap<Integer, Integer>();
-        september = new LinkedHashMap<Integer, Integer>();
-        october = new LinkedHashMap<Integer, Integer>();
-        november = new LinkedHashMap<Integer, Integer>();
-        december = new LinkedHashMap<Integer, Integer>();
+        january = new LinkedHashMap<String, Float>();
+        february = new LinkedHashMap<String, Float>();
+        march = new LinkedHashMap<String, Float>();
+        april = new LinkedHashMap<String, Float>();
+        may = new LinkedHashMap<String, Float>();
+        june = new LinkedHashMap<String, Float>();
+        july = new LinkedHashMap<String, Float>();
+        august = new LinkedHashMap<String, Float>();
+        september = new LinkedHashMap<String, Float>();
+        october = new LinkedHashMap<String, Float>();
+        november = new LinkedHashMap<String, Float>();
+        december = new LinkedHashMap<String, Float>();
     }
 
     /**
@@ -167,22 +168,31 @@ public class CalculateRVU {
      */
     public void addMonthlyChargesToArraylist() {
         // Add each month of charges to arraylist
-        months = new ArrayList<Map<Integer, Integer>>();
-        months.add(january);
-        months.add(february);
-        months.add(march);
-        months.add(april);
-        months.add(may);
-        months.add(june);
-        months.add(july);
-        months.add(august);
-        months.add(september);
-        months.add(october);
-        months.add(november);
-        months.add(december);
+        months = new LinkedHashMap<String, Map<String, Float>>();
+
+        months.put("January", january);
+        months.put("February", february);
+        months.put("March", march);
+        months.put("April", april);
+        months.put("May", may);
+        months.put("June", june);
+        months.put("July", july);
+        months.put("August", august);
+        months.put("September", september);
+        months.put("October", october);
+        months.put("November", november);
+        months.put("December", december);
 
         // Remove months with no charges
-        months.removeIf(element -> element.isEmpty());
+        List<String> keysToRemove = new ArrayList();
+
+        months.forEach((key, value) -> {
+            if (value.isEmpty()) {
+                keysToRemove.add(key);
+            }
+        });
+
+        months.keySet().removeAll(keysToRemove);
         logger.info(months);
     }
 
