@@ -196,10 +196,38 @@ public class CalculateRVU {
         logger.info(months);
     }
 
-    //TODO: Sum each CPT code type and multiply by RVU value
-        // loop through list and add cpt code type to count
-        // if 96116, then 96116 ++
-        // etc
+    /**
+     * Calculate total RVU for each month.
+     */
+    public void calculateMonthlyRVUCount() {
+
+        float productOfCodeByQuantity =0;
+
+        for(Map.Entry<String, Map<String, Float>> month : months.entrySet()) {
+
+            float monthlyTotal = 0;
+
+            for (Map.Entry<String, Float> code : month.getValue().entrySet()) {
+
+                float key = Float.valueOf(code.getKey());
+                float value = code.getValue();
+
+                productOfCodeByQuantity = key * value;
+                logger.info("Product: " + productOfCodeByQuantity);
+
+                monthlyTotal += productOfCodeByQuantity;
+            }
+
+            month.getValue().put("Total", monthlyTotal);
+            logger.info("Monthly total: " + monthlyTotal);
+            logger.info("Month w/Put: " + month);
+        }
+
+        logger.info("All the months calculated: " + months);
+
+        // TODO: return months for accessibility on JSP?
+    }
+
     //TODO: Total up the product of count x RVU value
 
 }
