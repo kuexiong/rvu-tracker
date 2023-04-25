@@ -44,6 +44,12 @@ public class AmountBilledDaoTest {
         database.runSQL("cleandb.sql");
     }
 
+    @Test
+    void getAllBillingsSuccess() {
+        List<AmountBilled> billings = amountBilledDao.getAll();
+        assertEquals(3, billings.size());
+    }
+
     /**
      * Gets patient by id success.
      */
