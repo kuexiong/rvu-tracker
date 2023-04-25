@@ -1,6 +1,7 @@
 package com.rvutracker.persistence;
 
 import com.rvutracker.entity.AmountBilled;
+import com.rvutracker.entity.CptCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,19 +20,19 @@ public class CalculateRVU {
     private Calendar cal;
     private int month;
 
-    private Set<AmountBilled> january;
-    private Set<AmountBilled> february;
-    private Set<AmountBilled> march;
-    private Set<AmountBilled> april;
-    private Set<AmountBilled> may;
-    private Set<AmountBilled> june;
-    private Set<AmountBilled> july;
-    private Set<AmountBilled> august;
-    private Set<AmountBilled> september;
-    private Set<AmountBilled> october;
-    private Set<AmountBilled> november;
-    private Set<AmountBilled> december;
-    private List<Set<AmountBilled>> months;
+    private Map<Integer, Integer> january;
+    private Map<Integer, Integer> february;
+    private Map<Integer, Integer> march;
+    private Map<Integer, Integer> april;
+    private Map<Integer, Integer> may;
+    private Map<Integer, Integer> june;
+    private Map<Integer, Integer> july;
+    private Map<Integer, Integer> august;
+    private Map<Integer, Integer> september;
+    private Map<Integer, Integer> october;
+    private Map<Integer, Integer> november;
+    private Map<Integer, Integer> december;
+    private List<Map<Integer, Integer>> months;
 
     /**
      * Gets current month.
@@ -74,29 +75,29 @@ public class CalculateRVU {
             if (cal.after(fiscalYearFrom) && cal.before(fiscalYearTo)) {
                 logger.info("Got into the if statement");
                 if (month == 1) {
-                    january.add(charge);
+                    january.put(cptCode, quantity);
                 } else if (month == 2) {
-                    february.add(charge);
+                    february.put(cptCode, quantity);
                 } else if (month == 3) {
-                    march.add(charge);
+                    march.put(cptCode, quantity);
                 } else if (month == 4) {
-                    april.add(charge);
+                    april.put(cptCode, quantity);
                 } else if (month == 5) {
-                    may.add(charge);
+                    may.put(cptCode, quantity);
                 } else if (month == 6) {
-                    june.add(charge);
+                    june.put(cptCode, quantity);
                 } else if (month == 7) {
-                    july.add(charge);
+                    july.put(cptCode, quantity);
                 } else if (month == 8) {
-                    august.add(charge);
+                    august.put(cptCode, quantity);
                 } else if (month == 9) {
-                    september.add(charge);
+                    september.put(cptCode, quantity);
                 } else if (month == 10) {
-                    october.add(charge);
+                    october.put(cptCode, quantity);
                 } else if (month == 11) {
-                    november.add(charge);
+                    november.put(cptCode, quantity);
                 } else {
-                    december.add(charge);
+                    december.put(cptCode, quantity);
                 }
             }
         }
@@ -140,18 +141,18 @@ public class CalculateRVU {
     public void initializeInstanceVariables() {
         genericDao = new GenericDao(AmountBilled.class);
 
-        january = new LinkedHashSet<AmountBilled>();
-        february = new LinkedHashSet<AmountBilled>();
-        march = new LinkedHashSet<AmountBilled>();
-        april = new LinkedHashSet<AmountBilled>();
-        may = new LinkedHashSet<AmountBilled>();
-        june = new LinkedHashSet<AmountBilled>();
-        july = new LinkedHashSet<AmountBilled>();
-        august = new LinkedHashSet<AmountBilled>();
-        september = new LinkedHashSet<AmountBilled>();
-        october = new LinkedHashSet<AmountBilled>();
-        november = new LinkedHashSet<AmountBilled>();
-        december = new LinkedHashSet<AmountBilled>();
+        january = new LinkedHashMap<Integer, Integer>();
+        february = new LinkedHashMap<Integer, Integer>();
+        march = new LinkedHashMap<Integer, Integer>();
+        april = new LinkedHashMap<Integer, Integer>();
+        may = new LinkedHashMap<Integer, Integer>();
+        june = new LinkedHashMap<Integer, Integer>();
+        july = new LinkedHashMap<Integer, Integer>();
+        august = new LinkedHashMap<Integer, Integer>();
+        september = new LinkedHashMap<Integer, Integer>();
+        october = new LinkedHashMap<Integer, Integer>();
+        november = new LinkedHashMap<Integer, Integer>();
+        december = new LinkedHashMap<Integer, Integer>();
     }
 
     /**
@@ -159,7 +160,7 @@ public class CalculateRVU {
      */
     public void addMonthlyChargesToArraylist() {
         // Add each month of charges to arraylist
-        months = new ArrayList<Set<AmountBilled>>();
+        months = new ArrayList<Map<Integer, Integer>>();
         months.add(january);
         months.add(february);
         months.add(march);
