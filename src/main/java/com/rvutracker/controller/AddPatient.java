@@ -48,10 +48,11 @@ public class AddPatient extends HttpServlet {
             throws ServletException, IOException {
 
         //Instantiate GenericDao of Patient object.
-        GenericDao addNewPatient = new GenericDao(Patient.class);
+        GenericDao patientDao = new GenericDao(Patient.class);
 
         //Instantiate GenericDao of User object.
         GenericDao userDao = new GenericDao(User.class);
+        GenericDao amountBilledDao = new GenericDao(AmountBilled.class);
 
         // Get patient information from HTML form.
         String firstName = request.getParameter("firstName");
@@ -87,8 +88,20 @@ public class AddPatient extends HttpServlet {
         Patient patient = new Patient(firstName, lastName, dateOfInterview,
                  referralQuestion, reportStatus, retrievedUser);
 
-        // Run method to insert into database
-        addNewPatient.insert(patient);
+        // Run method to insert into patient table
+        int ptId = patientDao.insert(patient);
+
+        // Insert charges into amountbilled table
+        Patient patientId = (Patient)patientDao.getById(ptId);
+        Map<CptCode, Integer> ptCharges = getCharges(cpt96116, cpt96121, cpt96132, cpt96133);
+
+        for(Map.Entry<CptCode, Integer> entry : ptCharges.entrySet()) {
+            CptCode cptCodeID = entry.getKey();
+            int quantity = entry.getValue();
+
+            AmountBilled newBilling = new AmountBilled(quantity, retrievedTimestamp, patientId, cptCodeID);
+            amountBilledDao.insert(newBilling);
+        }
 
         // TODO: add success message
 
