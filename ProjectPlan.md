@@ -87,22 +87,22 @@
 
 ### Week 12
 #### This week's focus is the team project
-- [ ] Team presentation
-- [ ] Self-evaluation due
+- [x] Team presentation
+- [x] Self-evaluation due
 - [ ] Professional development feedback
 - [ ] Weekly reflection
 
 ### Week 13
 #### This week's focus is the Add Time Billed Story
-- [ ] Create the database
-- [ ] Select Template | Design CSS
-- [ ] Add Time Billed jsp
-- [ ] Add Time Billed controller (java class)
-- [ ] AmountBilled entity (java class)
-- [ ] CPTCode and AmountBilled table
-- [ ] generic dao to add AmountBilled to db (java class)
-- [ ] unit test dao add time billed functionality
-- [ ] test round trip (front end to back end)
+- [x] Create the database
+- [x] Select Template | Design CSS -- new patient form
+- [x] Add Time Billed to new patient form
+- [x] Add Time Billed controller (java class) -- AddPatient servlet
+- [x] AmountBilled entity (java class)
+- [x] CPTCode and AmountBilled table
+- [x] generic dao to add AmountBilled to db (java class)
+- [x] unit test dao add time billed functionality
+- [x] test round trip (front end to back end)
 - [ ] Weekly reflection
 
 ### Week 14
