@@ -75,4 +75,65 @@ public class AddPatient extends HttpServlet {
         String url = "/patientListServlet";
         response.sendRedirect(request.getContextPath() + url);
     }
+
+    /**
+     * Convert string timestamp to Timestamp type.
+     *
+     * @param retrievedTimestamp the retrieved timestamp
+     * @return the timestamp
+     */
+    public Timestamp convertTimestamp(String retrievedTimestamp) {
+
+        Timestamp timestamp = null;
+        
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date parsedDate = dateFormat.parse(retrievedTimestamp);
+            timestamp = new java.sql.Timestamp(parsedDate.getTime());
+        } catch (ParseException e) {
+            logger.info(e.getStackTrace());
+        }
+
+        return timestamp;
+    }
+
+    /**
+     * Gets charges from form and puts them into a Map.
+     *
+     * @param cpt96116 the cpt 96116
+     * @param cpt96121 the cpt 96121
+     * @param cpt96132 the cpt 96132
+     * @param cpt96133 the cpt 96133
+     * @return the charges
+     */
+    public Map<CptCode, Integer> getCharges(String cpt96116, String cpt96121,
+                                            String cpt96132, String cpt96133) {
+
+        Map<CptCode, Integer> charges = new HashMap<CptCode, Integer>();
+
+        GenericDao cptCodeDao = new GenericDao(CptCode.class);
+        List<CptCode> cptCodes = cptCodeDao.getAll();
+
+        logger.info("All the cpt codes from table: " + cptCodes);
+
+        if (!cpt96116.isEmpty()) {
+            int codeId = cptCodes.get(0).getId();
+            charges.put((CptCode) cptCodeDao.getById(codeId), Integer.parseInt(cpt96116));
+        }
+        if (!cpt96121.isEmpty()) {
+            int codeId = cptCodes.get(1).getId();
+            charges.put((CptCode) cptCodeDao.getById(codeId), Integer.parseInt(cpt96121));
+        }
+        if (!cpt96132.isEmpty()) {
+            int codeId = cptCodes.get(2).getId();
+            charges.put((CptCode) cptCodeDao.getById(codeId), Integer.parseInt(cpt96132));
+        }
+        if (!cpt96133.isEmpty()) {
+            int codeId = cptCodes.get(2).getId();
+            charges.put((CptCode) cptCodeDao.getById(codeId), Integer.parseInt(cpt96133));
+        }
+
+        logger.info("All the charges for the patient are (CodeID, quantity: " + charges);
+        return charges;
+    }
 }
