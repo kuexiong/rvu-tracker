@@ -19,15 +19,17 @@ class CalculateRVUTest {
         assertEquals("April", monthName);
     }
 
+    // TODO: assertion
     @Test
     void calculateFiscalYear() {
         CalculateRVU test = new CalculateRVU();
         test.calculateFiscalYear();
     }
 
+    // TODO: assertion
     @Test
-    void getMonthlyCharges() {
+    void calculateSuccess() {
         CalculateRVU test = new CalculateRVU();
-        test.getMonthlyCharges();
+        test.calculate();
     }
 }
