@@ -50,7 +50,7 @@ public class CalculateRVU {
     /**
      * Gets charges for each month and puts into arraylists.
      */
-    public void getMonthlyCharges() {
+    public void calculate() {
 
         initializeInstanceVariables();
         calculateFiscalYear();
@@ -199,7 +199,7 @@ public class CalculateRVU {
     /**
      * Calculate total RVU for each month.
      */
-    public void calculateMonthlyRVUCount() {
+    public void calculateMonthlyRVU() {
 
         float productOfCodeByQuantity =0;
 
@@ -227,7 +227,5 @@ public class CalculateRVU {
 
         // TODO: return months for accessibility on JSP?
     }
-
-    //TODO: Total up the product of count x RVU value
 
 }
