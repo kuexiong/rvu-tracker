@@ -103,6 +103,23 @@
                     <button onclick="window.location.href='patientListServlet';" class="button secondary" name="" value="">Cancel</button>
                 </div>
             </form>
+
+            <script>
+                let field = document.querySelector('#timestamp');
+                let date = new Date();
+
+                let dateString =
+                    date.getUTCFullYear() + "-" +
+                    ("0" + (date.getUTCMonth() + 1)).slice(-2) + "-" +
+                    ("0" + date.getUTCDate()).slice(-2) + " " +
+                    ("0" + date.getUTCHours()).slice(-2) + ":" +
+                    ("0" + date.getUTCMinutes()).slice(-2) + ":" +
+                    ("0" + date.getUTCSeconds()).slice(-2);
+
+                // Set the date
+                field.value = dateString;
+            </script>
+
         </main>
     </body>
 </html>
