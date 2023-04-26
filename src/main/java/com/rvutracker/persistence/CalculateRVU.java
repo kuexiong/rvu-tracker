@@ -110,7 +110,7 @@ public class CalculateRVU {
         }
 
         addMonthlyChargesToArraylist();
-        calculateMonthlyRVUCount();
+        calculateMonthlyRVU();
     }
 
     /**
@@ -201,7 +201,8 @@ public class CalculateRVU {
      */
     public void calculateMonthlyRVU() {
 
-        float productOfCodeByQuantity =0;
+        float productOfCodeByQuantity = 0;
+        float grandTotal = 0;
 
         for(Map.Entry<String, Map<String, Float>> month : months.entrySet()) {
 
@@ -218,9 +219,13 @@ public class CalculateRVU {
                 monthlyTotal += productOfCodeByQuantity;
             }
 
+            grandTotal += monthlyTotal;
+
             month.getValue().put("Total", monthlyTotal);
             logger.info("Monthly total: " + monthlyTotal);
             logger.info("Month w/Put: " + month);
+            logger.info("The grand total is: " + grandTotal);
+
         }
 
         logger.info("All the months calculated: " + months);
