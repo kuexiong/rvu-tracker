@@ -50,7 +50,22 @@
 | 3/23/2023 | RVU tracker: method to verify and add user to USER table                                                                                                     | 2.5   ||
 | 3/24/2023 | RVU tracker: debug method, unit test method, navbar css                                                                                                      | 4.5   ||
 | 3/25/2023 | RVU tracker: https certification, deploying in AWS, debug jdbc connection error                                                                              | 2.5   ||
-|||||
-|||||
+| 3/26/2023 | RVU tracker: Figure out how to add API service to project                                                                                                    | 1.0   ||
+| 3/27/2023 | Week 8: activities and exercise                                                                                                                              | 1.66  ||
+| 3/27/2023 | Week 9: readings                                                                                                                                             | 0.5   ||
+| 3/28/2023 | Prof dev presentation: jQuery Validation Plugin research and coding                                                                                          | 5.0   ||
+| 3/29/2023 | Week 9: continued activity                                                                                                                                   | 0.75  ||
+| 3/30/2023 | Prof dev presentation: create and record presentation                                                                                                        | 3.0   ||
+| 4/2/2023  | Week 10: Activity 1 and 2                                                                                                                                    | 1.18  ||
+| 4/18/2023 | RVU tracker: Reconfig IDE, set request scope in JSP                                                                                                          | 3.0   ||
+| 4/19/2023 | RVU tracker: Mapped cpt code and amount billed tables                                                                                                        | 2.28  ||
+| 4/21/2023 | RVU tracker: Debug join table and hibernate mapping, was "ruvtracker" instead of "rvutracker", unit test join table                                          | 5.0   ||
+| 4/22/2023 | RVU tracker: continued unit testing                                                                                                                          | 3.0   ||
+| 4/22/2023 | Week 13: exercise                                                                                                                                            | 2.5   ||
+| 4/24/2023 | RVU tracker: worked on CalculateRVU class                                                                                                                    | 4.25  ||
+| 4/25/2023 | RVU tracker: add charges inputs to new patient form and add new charges to database                                                                          | 3.33  ||
+|           |                                                                                                                                                              |       ||
+|           |                                                                                                                                                              |       ||
+|           |                                                                                                                                                              |       ||
 
 
