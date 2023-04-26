@@ -1,5 +1,7 @@
 package com.rvutracker.controller;
 
+import com.rvutracker.entity.AmountBilled;
+import com.rvutracker.entity.CptCode;
 import com.rvutracker.entity.Patient;
 import com.rvutracker.entity.User;
 import com.rvutracker.persistence.GenericDao;
@@ -13,6 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A servlet to add a patient
@@ -50,6 +59,19 @@ public class AddPatient extends HttpServlet {
         String dateOfInterview = request.getParameter("dateOfInterview");
         String referralQuestion = request.getParameter("referralQuestion");
         String reportStatus = request.getParameter("reportStatus");
+        String cpt96116 = request.getParameter("96116quantity");
+        String cpt96121 = request.getParameter("96121quantity");
+        String cpt96132 = request.getParameter("96132quantity");
+        String cpt96133 = request.getParameter("96133quantity");
+        String timestamp = request.getParameter("timestamp");
+
+        logger.info("The timestamp from form is: " + timestamp);
+
+        Timestamp retrievedTimestamp = convertTimestamp(timestamp);
+
+        logger.info("96116 quantity: " + cpt96116);
+        logger.info("96121 quantity: " + cpt96121);
+        logger.info("The timestamp is: " + retrievedTimestamp.getTime());
 
         // Get username from session
         HttpSession session = request.getSession(false);
