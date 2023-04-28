@@ -44,17 +44,19 @@ public class PatientList extends HttpServlet {
         // Instantiate GenericDao of User object.
         GenericDao userDao = new GenericDao(User.class);
 
+        // TODO: activate when deploying to AWS
         // Get username from session
-        HttpSession session = request.getSession(false);
-
-        int sessionUser = (int)session.getAttribute("id");
-        logger.info("The id in session is: " + sessionUser);
+//        HttpSession session = request.getSession(false);
+//
+//        int sessionUser = (int)session.getAttribute("id");
+//        logger.info("The id in session is: " + sessionUser);
 
         // Get user by id
-        User retrievedUser = (User)userDao.getById(sessionUser);
+//        User retrievedUser = (User)userDao.getById(sessionUser);
+        User retrievedUser = (User)userDao.getById(8);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
-        // Put user and user's patients in a session
+        // Put user and user's patients in a request
         request.setAttribute("patients", retrievedUser.getPatients());
         request.setAttribute("user",retrievedUser);
         logger.info("List of patients for user: " + retrievedUser.getPatients());
