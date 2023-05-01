@@ -64,6 +64,8 @@ public class UpdatePatient extends HttpServlet {
         String cpt96132 = request.getParameter("96132quantity");
         String cpt96133 = request.getParameter("96133quantity");
         String timestamp = request.getParameter("timestamp");
+        String update = request.getParameter("update");
+        String delete = request.getParameter("delete");
         int id = Integer.parseInt(request.getParameter("patientId"));
 
         logger.info("The timestamp from form is: " + timestamp);
@@ -184,5 +186,17 @@ public class UpdatePatient extends HttpServlet {
                 amountBilledDao.insert(newBilling);
             }
         }
+    }
+
+    /**
+     * Delete patient.
+     *
+     * @param patient the patient
+     */
+    public void deletePatient(Patient patient) {
+
+        GenericDao patientDao = new GenericDao(Patient.class);
+
+        patientDao.delete(patient);
     }
 }
