@@ -100,9 +100,10 @@
                 <input id="timestamp" name="timestamp" value="" type="hidden">
 
                 <div class="patient-form-actions">
-                    <button type="submit" class="button" name="patientId" value="${patient.id}">Save Changes</button>
+                    <input type="hidden" name="patientId" value="${patient.id}">
+                    <button type="submit" class="button" name="update" value="update">Save Changes</button>
                     <button onclick="window.location.href='patientListServlet';" class="button secondary" name="" value="">Cancel</button>
-                    <button type="submit" class="button secondary" name="delete">Delete Patient</button>
+                    <button type="submit" class="button secondary" name="delete" value="delete">Delete Patient</button>
                 </div>
             </form>
 
