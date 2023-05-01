@@ -99,11 +99,15 @@ public class UpdatePatient extends HttpServlet {
         // Run method to insert into patient table
         patientDao.saveOrUpdate(patient);
 
-        // Insert or update charges into amountbilled table
-        insertUpdate(cpt96116, 0, patient, retrievedTimestamp);
-        insertUpdate(cpt96121, 1, patient, retrievedTimestamp);
-        insertUpdate(cpt96132, 2, patient, retrievedTimestamp);
-        insertUpdate(cpt96133, 3, patient, retrievedTimestamp);
+        if (update != null) {
+            // Insert or update charges into amountbilled table
+            insertUpdate(cpt96116, 0, patient, retrievedTimestamp);
+            insertUpdate(cpt96121, 1, patient, retrievedTimestamp);
+            insertUpdate(cpt96132, 2, patient, retrievedTimestamp);
+            insertUpdate(cpt96133, 3, patient, retrievedTimestamp);
+        } else if (delete != null) {
+            deletePatient(patient);
+        }
 
         // TODO: add success message
 
@@ -161,7 +165,6 @@ public class UpdatePatient extends HttpServlet {
             // Convert String quantity to integer
             int submittedQuantity = Integer.parseInt(cptQuantity);
 
-
             // Get billing by pt ID and cpt ID
             retrievedBilling = (List<AmountBilled>) amountBilledDao.getByPatientCodeIds(
                     patient.getId(), codeId);
@@ -176,12 +179,15 @@ public class UpdatePatient extends HttpServlet {
                 int quantity = billing.getQuantity();
 
                 // If quantity from billing entry in table is different from quantity in form, update in table
-                if (quantity != submittedQuantity) {
-                    billing.setQuantity(submittedQuantity);
-                    amountBilledDao.saveOrUpdate(billing);
+                if ((quantity != submittedQuantity) && submittedQuantity > 0) {
+                        billing.setQuantity(submittedQuantity);
+                        amountBilledDao.saveOrUpdate(billing);
+                } else if (submittedQuantity == 0) {
+                    amountBilledDao.delete(billing);
                 }
-            } else {
 
+            } else if (submittedQuantity > 0){
+                // if billing doesn't exist, insert new billing
                 AmountBilled newBilling = new AmountBilled(submittedQuantity, timestamp, patient, code);
                 amountBilledDao.insert(newBilling);
             }
