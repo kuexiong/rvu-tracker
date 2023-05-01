@@ -8,7 +8,7 @@
         <main id="patient-info">
             <h1>New Patient</h1>
 
-            <form action="updatePatientServlet" method="post">
+            <form action="updatePatientServlet" method="post" id="update-form">
                 <div id="patient-details" class="box">
                     <div class="box-header">
                         <img src="images/user.svg" alt="User icon">
@@ -120,6 +120,25 @@
 
                 // Set the date
                 field.value = dateString;
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    $("#update-form").submit(function () {
+                        if ($("#96116quantity").val()=="") {
+                            $("#96116quantity").val('0');
+                        }
+                        if ($("#96121quantity").val()=="") {
+                            $("#96121quantity").val('0');
+                        }
+                        if ($("#96132quantity").val()=="") {
+                            $("#96132quantity").val('0');
+                        }
+                        if ($("#96133quantity").val()=="") {
+                            $("#96133quantity").val('0');
+                        }
+                    });
+                });
             </script>
 
         </main>
