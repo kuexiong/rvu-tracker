@@ -2,6 +2,8 @@ package com.rvutracker.persistence;
 
 import com.rvutracker.entity.AmountBilled;
 import com.rvutracker.entity.CptCode;
+import com.rvutracker.entity.Patient;
+import com.rvutracker.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,13 +15,6 @@ import java.util.*;
 public class CalculateRVU {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
-    private GenericDao genericDao;
-    private Month currentMonth;
-    private Calendar fiscalYearFrom;
-    private Calendar fiscalYearTo;
-    private Calendar cal;
-    private int month;
-
     private Map<String, Float> january;
     private Map<String, Float> february;
     private Map<String, Float> march;
@@ -32,7 +27,6 @@ public class CalculateRVU {
     private Map<String, Float> october;
     private Map<String, Float> november;
     private Map<String, Float> december;
-    private Map<String, Map<String, Float>> months;
 
     /**
      * Gets current month.
@@ -40,6 +34,7 @@ public class CalculateRVU {
      * @return the current month
      */
     public Month getCurrentMonth() {
+        Month currentMonth;
         LocalDate currentDate = LocalDate.now();
 
         currentMonth = currentDate.getMonth();
@@ -48,9 +43,28 @@ public class CalculateRVU {
     }
 
     /**
+     * Gets current year.
+     *
+     * @return the current year
+     */
+    public int getCurrentYear() {
+        int currentYear;
+        LocalDate currentDate = LocalDate.now();
+
+        currentYear = currentDate.getYear();
+        logger.info("The current year is: " + currentYear);
+        return currentYear;
+    }
+
+    /**
      * Gets charges for each month and puts into arraylists.
      */
-    public void calculate() {
+    public Map<String, Map<String, Float>> calculate(int userId) {
+
+        int month;
+        Calendar cal;
+        GenericDao amountBilledDao = new GenericDao(AmountBilled.class);
+        GenericDao userDao = new GenericDao(User.class);
 
         initializeInstanceVariables();
         calculateFiscalYear();
@@ -73,13 +87,12 @@ public class CalculateRVU {
             cal.setTime(new Date(timestamp.getTime()));
             logger.info(cal.getTime());
             month = (cal.get(Calendar.MONTH) + 1);
-            int year = cal.get(Calendar.YEAR);
 
             logger.info("The month from timestamp is: " + month);
-            logger.info("The year from timestamp is: " + year);
+//            logger.info("The year from timestamp is: " + year);
 
             // if the date is greater than June 2022 and less than July 2023
-            if (cal.after(fiscalYearFrom) && cal.before(fiscalYearTo)) {
+            if (cal.after(calculateFiscalFrom()) && cal.before(calculateFiscalTo())) {
                 logger.info("Got into the if statement");
                 if (month == 1) {
                     january.put(rvuValue, quantity);
@@ -108,45 +121,70 @@ public class CalculateRVU {
                 }
             }
         }
-
-        addMonthlyChargesToArraylist();
-        calculateMonthlyRVU();
+        Map<String, Map<String, Float>>monthlyTotals = new LinkedHashMap<String, Map<String, Float>>();
+        monthlyTotals = calculateMonthlyRVU(addMonthlyChargesToArraylist());
+        return monthlyTotals;
     }
 
     /**
-     * Calculate fiscal year.
+     * Calculate start of fiscal year.
+     *
+     * @return
      */
-    public void calculateFiscalYear() {
+    public Calendar calculateFiscalFrom() {
 
+        Calendar fiscalYearFrom;
         int fyFrom;
-        int fyTo;
 
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         int currentMonth = (Calendar.getInstance().get(Calendar.MONTH)+1);
 
         if (currentMonth < 7) {
             fyFrom = (currentYear - 1);
-            fyTo = (currentYear);
         } else {
             fyFrom = currentYear;
-            fyTo = (currentYear + 1);
         }
 
         //fiscal year: July 2022 - June 2023
         fiscalYearFrom = Calendar.getInstance();
         fiscalYearFrom.set(fyFrom, (6), 1, 0, 0);
 
+
+        logger.info(fiscalYearFrom.getTime());
+
+        return fiscalYearFrom;
+    }
+
+    /**
+     * Calculate end of fiscal year.
+     */
+    public Calendar calculateFiscalTo() {
+
+        Calendar fiscalYearTo;
+        int fyTo;
+
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int currentMonth = (Calendar.getInstance().get(Calendar.MONTH)+1);
+
+        if (currentMonth < 7) {
+            fyTo = (currentYear);
+        } else {
+            fyTo = (currentYear + 1);
+        }
+
         fiscalYearTo = Calendar.getInstance();
         fiscalYearTo.set(fyTo, 5, 30, 23, 59, 59);
 
-        logger.info(fiscalYearFrom.getTime());
         logger.info(fiscalYearTo.getTime());
+
+        return fiscalYearTo;
     }
 
     /**
      * Initialize instance variables.
      */
     public void initializeInstanceVariables() {
+        GenericDao genericDao;
         genericDao = new GenericDao(AmountBilled.class);
 
         january = new LinkedHashMap<String, Float>();
@@ -166,7 +204,9 @@ public class CalculateRVU {
     /**
      * Add monthly arraylists of charges to main arraylist.
      */
-    public void addMonthlyChargesToArraylist() {
+    public Map<String, Map<String, Float>> addMonthlyChargesToArraylist() {
+
+        Map<String, Map<String, Float>> months;
         // Add each month of charges to arraylist
         months = new LinkedHashMap<String, Map<String, Float>>();
 
@@ -194,12 +234,14 @@ public class CalculateRVU {
 
         months.keySet().removeAll(keysToRemove);
         logger.info(months);
+
+        return months;
     }
 
     /**
      * Calculate total RVU for each month.
      */
-    public void calculateMonthlyRVU() {
+    public Map<String, Map<String, Float>> calculateMonthlyRVU(Map<String, Map<String, Float>> months) {
 
         float productOfCodeByQuantity = 0;
         float grandTotal = 0;
@@ -230,7 +272,8 @@ public class CalculateRVU {
 
         logger.info("All the months calculated: " + months);
 
-        // TODO: return months for accessibility on JSP?
+        return months;
+
     }
 
 }
