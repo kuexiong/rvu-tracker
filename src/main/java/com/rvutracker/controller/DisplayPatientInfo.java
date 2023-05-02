@@ -59,7 +59,7 @@ public class DisplayPatientInfo extends HttpServlet {
 
         // Retrieve quantity of each CPT code for patient
         String quantity96116 = get96116(patientId);
-        String  quantity96121 = get96121(patientId);
+        String quantity96121 = get96121(patientId);
         String quantity96132 = get96132(patientId);
         String quantity96133 = get96133(patientId);
 
