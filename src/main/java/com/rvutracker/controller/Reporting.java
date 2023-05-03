@@ -80,9 +80,17 @@ public class Reporting extends HttpServlet {
         Map<String, Map<String, Float>> monthlyTotals = totals.calculate(8);
         logger.info("The monthly totals are: " + monthlyTotals);
 
+        // Get current RUV for the month
+        Map<String, Float> currentMonthTotal = getCurrentMonthTotal(monthlyTotals, currentMonth);
+
+        // Remove current month from Map
+        monthlyTotals.remove(currentMonth);
+        logger.info(currentMonth + " has been removed from " + monthlyTotals);
+
         // Put monthly totals in a request
         request.setAttribute("currentMonth", currentMonth);
         request.setAttribute("currentYear", currentYear);
+        request.setAttribute("currentMonthlyTotal", currentMonthTotal);
         request.setAttribute("monthlyTotals", monthlyTotals);
         request.setAttribute("monthYear", getMonthsYears(monthlyTotals));
 
@@ -126,4 +134,31 @@ public class Reporting extends HttpServlet {
 
         return monthsYears;
     }
+
+    /**
+     * Gets current month total.
+     *
+     * @param monthlyTotals the monthly totals
+     * @param currentMonth  the current month
+     * @return the current month total
+     */
+    public Map<String, Float> getCurrentMonthTotal(Map<String, Map<String, Float>> monthlyTotals,
+                                                                String currentMonth) {
+
+        Map<String, Float> currentMonthTotal = new HashMap<>();
+
+        for (Map.Entry<String, Map<String, Float>> entry : monthlyTotals.entrySet()) {
+            logger.info("The entry.getKey() is: " + entry.getKey());
+            if (entry.getKey().equals(currentMonth)) {
+
+                logger.info("The entry.getValue() is: " + entry.getValue());
+
+                currentMonthTotal.putAll(entry.getValue());
+            }
+        }
+        logger.info("The total for the current month is: " + currentMonthTotal);
+
+        return currentMonthTotal;
+    }
+
 }
