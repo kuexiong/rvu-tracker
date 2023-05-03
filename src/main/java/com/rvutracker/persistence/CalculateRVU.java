@@ -67,13 +67,28 @@ public class CalculateRVU {
         GenericDao userDao = new GenericDao(User.class);
 
         initializeInstanceVariables();
-        calculateFiscalYear();
 
-        // Get all charges from database
-        List<AmountBilled> allCharges = genericDao.getAll();
+        // Get all the patients for the user in session
+        User user = (User) userDao.getById(userId);
+        Set<Patient> patients = user.getPatients();
+        logger.info("The patients for this user are: " + patients);
+
+        List<AmountBilled> allCharges = new ArrayList<>();
+
+        List<AmountBilled> patientBilling = new ArrayList<>();
+
+        for (Patient patient : patients) {
+            int patientId = patient.getId();
+            logger.info("The patient ID is: " + patientId);
+            if (patients.stream().anyMatch(pt -> patientId == pt.getId()) == true) {
+                patientBilling = amountBilledDao.getByPatientId(patientId);
+                allCharges.addAll(patientBilling);
+            }
+        }
+
         logger.info("All the charges: " + allCharges);
 
-        // Loop through array to add quantity and code to each month
+        // Loop through array of charges to add quantity and code to each month
         for(AmountBilled charge : allCharges) {
 
             float quantity = (float) charge.getQuantity();
