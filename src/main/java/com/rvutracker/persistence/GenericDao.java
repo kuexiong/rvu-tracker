@@ -138,6 +138,25 @@ public class GenericDao<T> {
     }
 
     /**
+     * Gets billing by patient id.
+     *
+     * @param patientid the patientid
+     * @return the billing by patient id
+     */
+    public List<T> getByPatientId(int patientid) {
+        openSession();
+        buildQuery();
+
+//        Predicate patient = builder.equal(root.get("patientid"), patientid);
+
+        query.select(root).where(builder.equal(root.get("patientid"), patientid));
+        List<T> entities = session.createQuery(query).getResultList();
+        session.close();
+        return entities;
+
+    }
+
+    /**
      * Get user by property (like)
      *
      * @param propertyName entity property to search by
