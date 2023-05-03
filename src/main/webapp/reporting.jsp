@@ -17,6 +17,21 @@
 
     <h6>CURRENT MONTH</h6>
 
+    <h2>${currentMonth} ${currentYear}</h2>
+
+        <table>
+            <thead>
+            <th><h5>Current RVU</h5></th>
+            <th><h5>Target RVU</h5></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>${currentMonthlyTotal['Total']}</td>
+                    <td>300</td>
+                </tr>
+            </tbody>
+        </table>
+
     <h6>FISCAL YTD</h6>
 
     <h2>Previous Months</h2>
@@ -35,10 +50,8 @@
                         ${entry.key}
                     </td>
                     <td>
-<%--                        <c:forEach var="month" items="${monthYear}">--%>
                             <c:set var="month" value="${entry.key}"/>
                             <c:out value="${monthYear[month]}"/>
-<%--                        </c:forEach>--%>
                     </td>
                     <td>
                         ${monthlyTotals[entry.key]['Total']}
