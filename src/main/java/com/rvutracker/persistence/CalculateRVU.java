@@ -80,6 +80,7 @@ public class CalculateRVU {
 
         List<AmountBilled> patientBilling = new ArrayList<>();
 
+        // Put billing that has patient's ID in allCharges arraylist
         for (Patient patient : patients) {
             int patientId = patient.getId();
             logger.info("The patient ID is: " + patientId);
@@ -105,6 +106,7 @@ public class CalculateRVU {
 
             logger.info("The CPT code is " + rvuValue + " and the quantity is: " + quantity);
 
+            // Convert timestamp to Calendar date
             Timestamp timestamp = charge.getTimestamp();
             cal = Calendar.getInstance();
             cal.setTime(new Date(timestamp.getTime()));
