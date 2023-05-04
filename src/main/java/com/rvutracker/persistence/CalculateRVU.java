@@ -110,29 +110,31 @@ public class CalculateRVU {
             if (cal.after(calculateFiscalFrom()) && cal.before(calculateFiscalTo())) {
                 logger.info("Got into the if statement");
                 if (month == 1) {
-                    january.put(rvuValue, quantity);
+                    addToQuantity(january, rvuValue,quantity);
                 } else if (month == 2) {
-                    february.put(rvuValue, quantity);
+                    addToQuantity(february, rvuValue,quantity);
                 } else if (month == 3) {
-                    march.put(rvuValue, quantity);
+                    addToQuantity(march, rvuValue,quantity);
                 } else if (month == 4) {
-                    april.put(rvuValue, quantity);
+                    addToQuantity(april, rvuValue,quantity);
+                    logger.info("\t\trvuValue for April: " + rvuValue + " quantity for April: " + april.get(rvuValue));
                 } else if (month == 5) {
-                    may.put(rvuValue, quantity);
+                    addToQuantity(may, rvuValue,quantity);
+                    logger.info("\t\trvuValue for May: " + rvuValue + " quantity for May: " + may.get(rvuValue));
                 } else if (month == 6) {
-                    june.put(rvuValue, quantity);
+                    addToQuantity(june, rvuValue,quantity);
                 } else if (month == 7) {
-                    july.put(rvuValue, quantity);
+                    addToQuantity(july, rvuValue,quantity);
                 } else if (month == 8) {
-                    august.put(rvuValue, quantity);
+                    addToQuantity(august, rvuValue,quantity);
                 } else if (month == 9) {
-                    september.put(rvuValue, quantity);
+                    addToQuantity(september, rvuValue,quantity);
                 } else if (month == 10) {
-                    october.put(rvuValue, quantity);
+                    addToQuantity(october, rvuValue,quantity);
                 } else if (month == 11) {
-                    november.put(rvuValue, quantity);
+                    addToQuantity(november, rvuValue,quantity);
                 } else {
-                    december.put(rvuValue, quantity);
+                    addToQuantity(december, rvuValue,quantity);
                 }
             }
         }
@@ -286,5 +288,22 @@ public class CalculateRVU {
 
         return months;
     }
+
+    /**
+     * Add to quantity of each rvuValue in Map.
+     *
+     * @param month    the month
+     * @param rvuValue the rvu value
+     * @param quantity the quantity
+     */
+    public void addToQuantity(Map<String, Float> month, String rvuValue, float quantity) {
+
+        if (month.containsKey(rvuValue)) {
+            month.put(rvuValue, month.get(rvuValue) + quantity);
+        } else {
+            month.put(rvuValue, quantity);
+        }
+    }
+
 
 }
