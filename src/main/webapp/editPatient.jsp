@@ -6,7 +6,7 @@
 <html>
     <body>
         <main id="patient-info">
-            <h1>New Patient</h1>
+            <h1>Edit Patient</h1>
 
             <form action="updatePatientServlet" method="post" id="update-form">
                 <div id="patient-details" class="box">
