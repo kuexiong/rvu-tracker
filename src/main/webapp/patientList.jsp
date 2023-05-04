@@ -16,6 +16,21 @@
 
         <h1>Hello ${user.firstName}!</h1>
 
+        <table>
+            <thead>
+            <th><h5>In Progress</h5></th>
+            <th><h5>Final Review</h5></th>
+            <th><h5>Signed</h5></th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${reportStatusCount['In Progress']}</td>
+                <td>${reportStatusCount['Final Review']}</td>
+                <td>${reportStatusCount['Signed']}</td>
+            </tr>
+            </tbody>
+        </table>
+
         <h2>Patients </h2>
         <table id="patientTable" class="display" cellspacing="0" width="100%">
             <thead>
