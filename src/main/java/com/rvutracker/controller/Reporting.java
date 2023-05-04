@@ -112,8 +112,8 @@ public class Reporting extends HttpServlet {
 
         CalculateRVU fyFrom = new CalculateRVU();
         CalculateRVU fyTo = new CalculateRVU();
-        int startYear = fyFrom.calculateFiscalFrom().get(Calendar.YEAR);
-        int endYear = fyTo.calculateFiscalTo().get(Calendar.YEAR);
+        int startYear = fyFrom.calculateFiscalStart().get(Calendar.YEAR);
+        int endYear = fyTo.calculateFiscalEnd().get(Calendar.YEAR);
 
         logger.info("Start year is: " + startYear);
         logger.info("End year is: " + endYear);
