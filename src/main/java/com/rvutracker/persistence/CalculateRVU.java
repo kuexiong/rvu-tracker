@@ -12,6 +12,9 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
 
+/**
+ * The type CalculateRVU.
+ */
 public class CalculateRVU {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
