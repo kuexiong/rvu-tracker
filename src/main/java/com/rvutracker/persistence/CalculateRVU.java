@@ -88,8 +88,13 @@ public class CalculateRVU {
                 allCharges.addAll(patientBilling);
             }
         }
+        logger.info("-----------------------------");
+        logger.info("--- All Charges");
+        logger.info("-----------------------------\n");
+        logger.info(allCharges);
 
-        logger.info("All the charges: " + allCharges);
+        logger.info("-----------------------------");
+        logger.info("--- Sum Loop \n");
 
         // Loop through array of charges to add quantity and code to each month
         for(AmountBilled charge : allCharges) {
@@ -103,15 +108,17 @@ public class CalculateRVU {
             Timestamp timestamp = charge.getTimestamp();
             cal = Calendar.getInstance();
             cal.setTime(new Date(timestamp.getTime()));
-            logger.info(cal.getTime());
+            logger.info("Timestamp: " + cal.getTime());
             month = (cal.get(Calendar.MONTH) + 1);
 
             logger.info("The month from timestamp is: " + month);
-//            logger.info("The year from timestamp is: " + year);
 
             // if the date is greater than June 2022 and less than July 2023
-            if (cal.after(calculateFiscalFrom()) && cal.before(calculateFiscalTo())) {
-                logger.info("Got into the if statement");
+            if (cal.after(calculateFiscalStart()) && cal.before(calculateFiscalEnd())) {
+
+                logger.info("\t\tGot into the if statement");
+                logger.info("\t\tMonth:"  + month);
+
                 if (month == 1) {
                     addToQuantity(january, rvuValue,quantity);
                 } else if (month == 2) {
@@ -140,7 +147,10 @@ public class CalculateRVU {
                     addToQuantity(december, rvuValue,quantity);
                 }
             }
+
+            logger.info("-----------------------------\n");
         }
+
         Map<String, Map<String, Float>>monthlyTotals = new LinkedHashMap<String, Map<String, Float>>();
         monthlyTotals = calculateMonthlyRVU(addMonthlyChargesToArraylist());
         return monthlyTotals;
@@ -283,7 +293,6 @@ public class CalculateRVU {
             month.getValue().put("Total", monthlyTotal);
             logger.info("Monthly total: " + monthlyTotal);
             logger.info("Month w/Put: " + month);
-//            logger.info("The grand total is: " + grandTotal);
 
         }
 
