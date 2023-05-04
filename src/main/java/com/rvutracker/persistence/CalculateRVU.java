@@ -163,9 +163,9 @@ public class CalculateRVU {
      *
      * @return
      */
-    public Calendar calculateFiscalFrom() {
+    public Calendar calculateFiscalStart() {
 
-        Calendar fiscalYearFrom;
+        Calendar fiscalYearStart;
         int fyFrom;
 
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -178,21 +178,21 @@ public class CalculateRVU {
         }
 
         //fiscal year: July 2022 - June 2023
-        fiscalYearFrom = Calendar.getInstance();
-        fiscalYearFrom.set(fyFrom, (6), 1, 0, 0);
+        fiscalYearStart = Calendar.getInstance();
+        fiscalYearStart.set(fyFrom, (6), 1, 0, 0);
 
 
-        logger.info(fiscalYearFrom.getTime());
+        logger.info(fiscalYearStart.getTime());
 
-        return fiscalYearFrom;
+        return fiscalYearStart;
     }
 
     /**
      * Calculate end of fiscal year.
      */
-    public Calendar calculateFiscalTo() {
+    public Calendar calculateFiscalEnd() {
 
-        Calendar fiscalYearTo;
+        Calendar fiscalYearEnd;
         int fyTo;
 
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -204,12 +204,12 @@ public class CalculateRVU {
             fyTo = (currentYear + 1);
         }
 
-        fiscalYearTo = Calendar.getInstance();
-        fiscalYearTo.set(fyTo, 5, 30, 23, 59, 59);
+        fiscalYearEnd = Calendar.getInstance();
+        fiscalYearEnd.set(fyTo, 5, 30, 23, 59, 59);
 
-        logger.info(fiscalYearTo.getTime());
+        logger.info(fiscalYearEnd.getTime());
 
-        return fiscalYearTo;
+        return fiscalYearEnd;
     }
 
     /**
