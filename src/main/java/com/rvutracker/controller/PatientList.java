@@ -4,6 +4,7 @@ package com.rvutracker.controller;
 import com.rvutracker.entity.Patient;
 import com.rvutracker.entity.User;
 import com.rvutracker.persistence.GenericDao;
+import com.rvutracker.persistence.ReportStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Servlet that will display user's patients
@@ -56,9 +58,15 @@ public class PatientList extends HttpServlet {
         User retrievedUser = (User)userDao.getById(8);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
+        // Get report status count
+        ReportStatus reportStatus = new ReportStatus();
+        Map<String, Integer> reportStatusCount = reportStatus.reportStatusCount(retrievedUser);
+        logger.info("The count for each report status: " + reportStatusCount);
+
         // Put user and user's patients in a request
         request.setAttribute("patients", retrievedUser.getPatients());
-        request.setAttribute("user",retrievedUser);
+        request.setAttribute("user", retrievedUser);
+        request.setAttribute("reportStatusCount", reportStatusCount);
         logger.info("List of patients for user: " + retrievedUser.getPatients());
 
         // Forward request and response to Patient List JSP
