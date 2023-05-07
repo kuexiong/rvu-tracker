@@ -13,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -60,10 +59,10 @@ public class AddPatient extends HttpServlet {
         String dateOfInterview = request.getParameter("dateOfInterview");
         String referralQuestion = request.getParameter("referralQuestion");
         String reportStatus = request.getParameter("reportStatus");
-        String cpt96116 = request.getParameter("96116quantity");
-        String cpt96121 = request.getParameter("96121quantity");
-        String cpt96132 = request.getParameter("96132quantity");
-        String cpt96133 = request.getParameter("96133quantity");
+        String cpt96116 = request.getParameter("quantity96116");
+        String cpt96121 = request.getParameter("quantity96121");
+        String cpt96132 = request.getParameter("quantity96132");
+        String cpt96133 = request.getParameter("quantity96133");
         String timestamp = request.getParameter("timestamp");
 
         logger.info("The timestamp from form is: " + timestamp);
