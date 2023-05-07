@@ -13,7 +13,7 @@ public class GenericDao<T> {
 
     private Class<T> type;
     private final Logger logger = LogManager.getLogger(this.getClass());
-    SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
+    private SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     private Session session;
     private CriteriaQuery<T> query;
