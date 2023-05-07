@@ -4,6 +4,7 @@ import com.rvutracker.util.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,35 +21,10 @@ import java.util.Properties;
  *
  */
 public class LogIn extends HttpServlet implements PropertiesLoader {
-    Properties properties;
-    private final Logger logger = LogManager.getLogger(this.getClass());
-    public static String CLIENT_ID;
-    public static String LOGIN_URL;
-    public static String REDIRECT_URL;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        loadProperties();
-    }
-
-    /**
-     * Read in the cognito props file and get the client id and required urls
-     * for authenticating a user.
-     */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
-    // 4 to do this work a single time and put the properties in the application scope
-    private void loadProperties() {
-        try {
-            properties = loadProperties("/cognito.properties");
-            CLIENT_ID = properties.getProperty("client.id");
-            LOGIN_URL = properties.getProperty("loginURL");
-            REDIRECT_URL = properties.getProperty("redirectURL");
-        } catch (IOException ioException) {
-            logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
-        } catch (Exception e) {
-            logger.error("Error loading properties" + e.getMessage(), e);
-        }
     }
 
     /**
@@ -60,8 +36,12 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO if properties weren't loaded properly, route to an error page
-        String url = LOGIN_URL + "?response_type=code&client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URL;
+
+        ServletContext context = getServletContext();
+
+        String url = context.getAttribute("LOGIN_URL") + "?response_type=code&client_id="
+                + context.getAttribute("CLIENT_ID") + "&redirect_uri="
+                + context.getAttribute("REDIRECT_URL");
         resp.sendRedirect(url);
     }
 }
