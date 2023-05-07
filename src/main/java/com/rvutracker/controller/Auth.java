@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,20 +46,13 @@ import java.util.stream.Collectors;
 @WebServlet(
         urlPatterns = {"/auth"}
 )
-// TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
 
 public class Auth extends HttpServlet implements PropertiesLoader {
-    Properties properties;
-    String CLIENT_ID;
-    String CLIENT_SECRET;
-    String OAUTH_URL;
-    String LOGIN_URL;
-    String REDIRECT_URL;
-    String REGION;
-    String POOL_ID;
+
+    ServletContext context;
     Keys jwks;
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -66,7 +60,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     @Override
     public void init() throws ServletException {
         super.init();
-        loadProperties();
         loadKey();
     }
 
@@ -86,11 +79,14 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String lastName = null;
         String email = null;
         String username = null;
+        String url = null;
         int userID = 0;
 
         if (authCode == null) {
-            //TODO forward to an error page or back to the login
+            //Forward to an error page
+            url = "/error404.jsp";
         } else {
+            url = "/patientListServlet";
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
@@ -101,11 +97,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 email = userLoginInfo.get(2);
                 username = userLoginInfo.get(3);
             } catch (IOException e) {
-                logger.error("Error getting or validating the token: " + e.getMessage(), e);
-                //TODO forward to an error page
+                logger.error("Error getting or validating the token: " + e.getStackTrace());
             } catch (InterruptedException e) {
-                logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
-                //TODO forward to an error page
+                logger.error("Error getting token from Cognito oauth url " + e.getStackTrace());
             }
         }
 
@@ -119,7 +113,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.info("User information has been added to session");
 
         // Upon successfully signing in, user is taken to Patient List
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/patientListServlet");
+        RequestDispatcher dispatcher = req.getRequestDispatcher(url);
         dispatcher.forward(req, resp);
     }
 
@@ -208,7 +202,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         Algorithm algorithm = Algorithm.RSA256((RSAPublicKey) publicKey, null);
 
         // Verify ISS field of the token to make sure it's from the Cognito source
-        String iss = String.format("https://cognito-idp.%s.amazonaws.com/%s", REGION, POOL_ID);
+        String iss = String.format("https://cognito-idp.%s.amazonaws.com/%s",
+                context.getAttribute("REGION"), context.getAttribute("POOL_ID"));
 
         JWTVerifier verifier = JWT.require(algorithm)
                 .withIssuer(iss)
@@ -247,20 +242,21 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @return the constructed oauth request
      */
     private HttpRequest buildAuthRequest(String authCode) {
-        String keys = CLIENT_ID + ":" + CLIENT_SECRET;
+        String keys = context.getAttribute("CLIENT_ID") + ":" + context.getAttribute("CLIENT_SECRET");
 
         HashMap<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "authorization_code");
-        parameters.put("client-secret", CLIENT_SECRET);
-        parameters.put("client_id", CLIENT_ID);
+        parameters.put("client-secret", (String) context.getAttribute("CLIENT_SECRET"));
+        parameters.put("client_id", (String) context.getAttribute("CLIENT_ID"));
         parameters.put("code", authCode);
-        parameters.put("redirect_uri", REDIRECT_URL);
+        parameters.put("redirect_uri", (String) context.getAttribute("REDIRECT_URL"));
 
         String form = parameters.keySet().stream()
                 .map(key -> key + "=" + URLEncoder.encode(parameters.get(key), StandardCharsets.UTF_8))
                 .collect(Collectors.joining("&"));
 
         String encoding = Base64.getEncoder().encodeToString(keys.getBytes());
+        String OAUTH_URL = (String) context.getAttribute("OAUTH_URL");
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(OAUTH_URL))
                 .headers("Content-Type", "application/x-www-form-urlencoded", "Authorization", "Basic " + encoding)
@@ -282,7 +278,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            URL jwksURL = new URL(String.format("https://cognito-idp.%s.amazonaws.com/%s/.well-known/jwks.json", REGION, POOL_ID));
+            URL jwksURL = new URL(String.format("https://cognito-idp.%s.amazonaws.com/%s/.well-known/jwks.json",
+                    context.getAttribute("REGION"), context.getAttribute("POOL_ID")));
             File jwksFile = new File("jwks.json");
             FileUtils.copyURLToFile(jwksURL, jwksFile);
             jwks = mapper.readValue(jwksFile, Keys.class);
@@ -291,28 +288,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             logger.error("Cannot load json..." + ioException.getMessage(), ioException);
         } catch (Exception e) {
             logger.error("Error loading json" + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Read in the cognito props file and get/set the client id, secret, and required urls
-     * for authenticating a user.
-     */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
-    private void loadProperties() {
-        try {
-            properties = loadProperties("/cognito.properties");
-            CLIENT_ID = properties.getProperty("client.id");
-            CLIENT_SECRET = properties.getProperty("client.secret");
-            OAUTH_URL = properties.getProperty("oauthURL");
-            LOGIN_URL = properties.getProperty("loginURL");
-            REDIRECT_URL = properties.getProperty("redirectURL");
-            REGION = properties.getProperty("region");
-            POOL_ID = properties.getProperty("poolId");
-        } catch (IOException ioException) {
-            logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
-        } catch (Exception e) {
-            logger.error("Error loading properties" + e.getMessage(), e);
         }
     }
 }
