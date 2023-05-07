@@ -206,8 +206,7 @@ public class Reporting extends HttpServlet implements PropertiesLoader {
     public int calculatePercentage(float current, int target) {
 
         int currentInInt = (int) current;
-        int percentage = currentInInt * 100 / target;
 
-        return percentage;
+        return currentInInt * 100 / target;
     }
 }
