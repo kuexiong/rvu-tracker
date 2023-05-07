@@ -1,6 +1,5 @@
 package com.rvutracker.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -9,8 +8,6 @@ import javax.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Objects;
-
-import static javax.persistence.AccessType.PROPERTY;
 
 /**
  * The type AmountBilled.

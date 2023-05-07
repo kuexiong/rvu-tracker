@@ -1,8 +1,5 @@
 package com.rvutracker.persistence;
 
-import com.rvutracker.entity.CptCode;
-import com.rvutracker.entity.Patient;
-import com.rvutracker.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
