@@ -4,15 +4,19 @@ package com.rvutracker.controller;
 import com.rvutracker.entity.User;
 import com.rvutracker.persistence.CalculateRVU;
 import com.rvutracker.persistence.GenericDao;
+import com.rvutracker.util.PropertiesLoader;
+import io.quickchart.QuickChart;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Context;
 import java.io.IOException;
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -45,6 +49,9 @@ public class Reporting extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
             throws ServletException, IOException {
+
+        //instantiate servletcontext object
+        ServletContext context = getServletContext();
 
         // Instantiate GenericDao of User object.
         GenericDao userDao = new GenericDao(User.class);
@@ -86,6 +93,26 @@ public class Reporting extends HttpServlet {
         // Remove current month from Map
         monthlyTotals.remove(currentMonth);
         logger.info(currentMonth + " has been removed from " + monthlyTotals);
+
+        // Get properties from servlet context
+        int targetRvu = Integer.parseInt((String) context.getAttribute("targetRvu"));
+        int width = Integer.parseInt((String) context.getAttribute("width"));
+        int height = Integer.parseInt((String) context.getAttribute("height"));
+        String beforeData = (String) context.getAttribute("chartBeforeData");
+        String afterData = (String) context.getAttribute("chartAfterData");
+        logger.info("The rvu target from properties file is: " + targetRvu);
+
+        float currentTotal = currentMonthTotal.get("Total");
+        logger.info("--------------- QuickChart--------------\n");
+        logger.info("The current total for the month is: " + currentMonthTotal);
+        logger.info("--------------- QuickChart--------------\n");
+
+        // Calculate percentage
+        int percentage = calculatePercentage(currentTotal, targetRvu);
+        logger.info("The calculated percentage is: " + percentage);
+
+        // Get progress bar image URL
+        String progressBarUrl = getProgressBar(beforeData, afterData, width, height, percentage);
 
         // Put monthly totals in a request
         request.setAttribute("currentMonth", currentMonth);
@@ -161,4 +188,26 @@ public class Reporting extends HttpServlet {
         return currentMonthTotal;
     }
 
+    public String getProgressBar(String beforeData, String afterData,
+                                 int width, int height, int percentage) {
+
+        String config = beforeData + percentage + afterData;
+        logger.info("The data config string is: " + config);
+
+        QuickChart chart = new QuickChart();
+        chart.setWidth(width);
+        chart.setHeight(height);
+        chart.setConfig(config);
+
+        logger.info("The complete QuickChart url is: " + chart.getUrl());
+        return chart.getUrl();
+    }
+
+    public int calculatePercentage(float current, int target) {
+
+        int currentInInt = (int) current;
+        int percentage = currentInInt * 100 / target;
+
+        return percentage;
+    }
 }
