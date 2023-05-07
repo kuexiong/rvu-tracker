@@ -34,7 +34,7 @@ import java.util.Map;
         name = "reportingServlet",
         urlPatterns = { "/reportingServlet"}
 )
-public class Reporting extends HttpServlet {
+public class Reporting extends HttpServlet implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -120,8 +120,9 @@ public class Reporting extends HttpServlet {
         request.setAttribute("currentMonthlyTotal", currentMonthTotal);
         request.setAttribute("monthlyTotals", monthlyTotals);
         request.setAttribute("monthYear", getMonthsYears(monthlyTotals));
+        request.setAttribute("progressBar", progressBarUrl);
 
-        // Redirect browser to reporting page
+        // Forward request to progressBarServlet to get progress bar
         String url = "/reporting.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
