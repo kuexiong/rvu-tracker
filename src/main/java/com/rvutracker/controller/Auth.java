@@ -231,9 +231,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         logger.debug("here are all the available claims: " + jwt.getClaims());
 
-        // TODO decide what you want to do with the info! <--store username in session
-        // for now, I'm just returning username for display back to the browser
-
+        // Put login information into arraylist
         List<String> userLoginInfo = new ArrayList<>();
         userLoginInfo.add(firstName);
         userLoginInfo.add(lastName);
