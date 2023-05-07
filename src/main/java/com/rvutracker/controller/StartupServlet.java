@@ -15,17 +15,17 @@ import java.util.Properties;
 )
 public class StartupServlet extends HttpServlet implements PropertiesLoader {
 
-    private Properties quickChartProperties;
-    private Properties rvuProperties;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     public void init() {
 
+        Properties quickChartProperties;
+        Properties rvuProperties;
         logger.info("I am in the StartupServlet");
 
         try {
-            this.quickChartProperties = loadProperties("/quickChart.properties");
-            this.rvuProperties = loadProperties("/rvu.properties");
+            quickChartProperties = loadProperties("/quickChart.properties");
+            rvuProperties = loadProperties("/rvu.properties");
             logger.info("The QuickChart end point is: " + quickChartProperties.getProperty("url"));
 
             getServletContext().setAttribute("url", quickChartProperties.getProperty("url"));
