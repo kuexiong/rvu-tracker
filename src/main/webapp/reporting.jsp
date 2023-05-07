@@ -31,6 +31,8 @@
                 </tr>
             </tbody>
         </table>
+    
+    <img src="${progressBar}">
 
     <h6>FISCAL YTD</h6>
 
