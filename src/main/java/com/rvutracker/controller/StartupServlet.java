@@ -36,7 +36,7 @@ public class StartupServlet extends HttpServlet implements PropertiesLoader {
             getServletContext().setAttribute("targetRvu", rvuProperties.getProperty("target.rvu"));
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            logger.error("There was an error: " + e.getStackTrace());
         }
     }
 }
