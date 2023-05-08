@@ -98,6 +98,11 @@ public class UpdatePatient extends HttpServlet {
         patientDao.saveOrUpdate(patient);
 
         if (update != null) {
+            Timestamp retrievedTimestamp = convertTimestamp(timestamp);
+
+            // Update information in patient table with inputs from Edit Patient Form
+            updatePatient(patient, firstName, lastName, dateOfInterview, referralQuestion, reportStatus);
+
             // Insert or update charges into amountbilled table
             insertUpdate(cpt96116, 0, patient, retrievedTimestamp);
             insertUpdate(cpt96121, 1, patient, retrievedTimestamp);
@@ -190,6 +195,30 @@ public class UpdatePatient extends HttpServlet {
             }
         }
     }
+
+    /**
+     * Update patient information in patient table.
+     *
+     * @param patient          the patient
+     * @param firstName        the first name
+     * @param lastName         the last name
+     * @param dateOfInterview  the date of interview
+     * @param referralQuestion the referral question
+     * @param reportStatus     the report status
+     */
+    public void updatePatient(Patient patient, String firstName, String lastName, String dateOfInterview,
+                              String referralQuestion, String reportStatus) {
+
+        patient.setFirstName(firstName);
+        patient.setLastName(lastName);
+        patient.setInterviewDate(dateOfInterview);
+        patient.setReferralQuestion(referralQuestion);
+        patient.setReportStatus(reportStatus);
+
+        // Run method to insert into patient table
+        patientDao.saveOrUpdate(patient);
+    }
+
 
     /**
      * Delete patient.
