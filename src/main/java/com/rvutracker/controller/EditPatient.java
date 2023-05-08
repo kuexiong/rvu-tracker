@@ -47,9 +47,6 @@ public class EditPatient extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Instantiate GenericDao of Patient object.
-        GenericDao patientDao = new GenericDao(Patient.class);
-
         //Instantiate GenericDao of User object.
         GenericDao userDao = new GenericDao(User.class);
         GenericDao amountBilledDao = new GenericDao(AmountBilled.class);
@@ -69,14 +66,6 @@ public class EditPatient extends HttpServlet {
         String delete = request.getParameter("delete");
         int id = Integer.parseInt(request.getParameter("patientId"));
 
-        logger.info("The timestamp from form is: " + timestamp);
-
-        Timestamp retrievedTimestamp = convertTimestamp(timestamp);
-
-        logger.info("96116 quantity: " + cpt96116);
-        logger.info("96121 quantity: " + cpt96121);
-        logger.info("The timestamp is: " + retrievedTimestamp.getTime());
-
         // TODO: activate when deploying to AWS
         // Get username from session
 //        HttpSession session = request.getSession(false);
@@ -91,15 +80,8 @@ public class EditPatient extends HttpServlet {
 
         // Instantiate new patient.
         Patient patient = (Patient)patientDao.getById(id);
-        patient.setFirstName(firstName);
-        patient.setLastName(lastName);
-        patient.setInterviewDate(dateOfInterview);
-        patient.setReferralQuestion(referralQuestion);
-        patient.setReportStatus(reportStatus);
 
-        // Run method to insert into patient table
-        patientDao.saveOrUpdate(patient);
-
+        // If Saved Changes button was clicked on in JSP
         if (update != null) {
             Timestamp retrievedTimestamp = convertTimestamp(timestamp);
 
@@ -107,15 +89,13 @@ public class EditPatient extends HttpServlet {
             updatePatient(patient, firstName, lastName, dateOfInterview, referralQuestion, reportStatus);
 
             // Insert or update charges into amountbilled table
-            insertUpdate(cpt96116, 0, patient, retrievedTimestamp);
-            insertUpdate(cpt96121, 1, patient, retrievedTimestamp);
-            insertUpdate(cpt96132, 2, patient, retrievedTimestamp);
-            insertUpdate(cpt96133, 3, patient, retrievedTimestamp);
+            insertUpdateBilling(cpt96116, 0, patient, retrievedTimestamp);
+            insertUpdateBilling(cpt96121, 1, patient, retrievedTimestamp);
+            insertUpdateBilling(cpt96132, 2, patient, retrievedTimestamp);
+            insertUpdateBilling(cpt96133, 3, patient, retrievedTimestamp);
         } else if (delete != null) {
             deletePatient(patient);
         }
-
-        // TODO: add success messages
 
         // Redirect browser back to patient list
         String url = "/patientListServlet";
@@ -137,7 +117,7 @@ public class EditPatient extends HttpServlet {
             Date parsedDate = dateFormat.parse(retrievedTimestamp);
             timestamp = new Timestamp(parsedDate.getTime());
         } catch (ParseException e) {
-            logger.info(e.getStackTrace());
+            logger.error("Error parsing timestamp" + e.getMessage(), e);
         }
 
         return timestamp;
@@ -151,7 +131,7 @@ public class EditPatient extends HttpServlet {
      * @param patient        the patient
      * @param timestamp      the timestamp
      */
-    public void insertUpdate(String cptQuantity, int positionInList, Patient patient, Timestamp timestamp) {
+    public void insertUpdateBilling(String cptQuantity, int positionInList, Patient patient, Timestamp timestamp) {
 
         GenericDao cptCodeDao = new GenericDao(CptCode.class);
         GenericDao amountBilledDao = new GenericDao(AmountBilled.class);
