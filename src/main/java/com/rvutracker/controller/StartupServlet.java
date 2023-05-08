@@ -75,6 +75,7 @@ public class StartupServlet extends HttpServlet implements PropertiesLoader {
         getServletContext().setAttribute("CLIENT_SECRET", cognitoProperties.getProperty("client.secret"));
         getServletContext().setAttribute("OAUTH_URL", cognitoProperties.getProperty("oauthURL"));
         getServletContext().setAttribute("LOGIN_URL", cognitoProperties.getProperty("loginURL"));
+        getServletContext().setAttribute("LOGOUT_URL", cognitoProperties.getProperty("logoutURL"));
         getServletContext().setAttribute("REDIRECT_URL", cognitoProperties.getProperty("redirectURL"));
         getServletContext().setAttribute("REGION", cognitoProperties.getProperty("region"));
         getServletContext().setAttribute("POOL_ID", cognitoProperties.getProperty("poolId"));
