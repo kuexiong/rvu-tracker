@@ -60,6 +60,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     @Override
     public void init() throws ServletException {
         super.init();
+        context = getServletContext();
         loadKey();
     }
 
