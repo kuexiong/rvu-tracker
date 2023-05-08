@@ -96,16 +96,49 @@
                     </div>
                 </div>
 
-
                 <input id="timestamp" name="timestamp" value="" type="hidden">
 
                 <div class="patient-form-actions">
-                    <input type="hidden" name="patientId" value="${patient.id}">
-                    <button type="submit" class="button" name="update" value="update">Save Changes</button>
-                    <button onclick="window.location.href='patientListServlet';" class="button secondary" name="" value="">Cancel</button>
-                    <button type="submit" class="button secondary" name="delete" value="delete">Delete Patient</button>
+                    <div>
+                        <input type="hidden" name="patientId" value="${patient.id}">
+                        <button type="submit" class="button" name="update" value="update">Save Changes</button>
+                        <button onclick="window.location.href='patientListServlet';" class="button secondary" name="" value="">Cancel</button>
+                    </div>
+                    <button class="button delete show-modal">Delete Patient</button>
                 </div>
             </form>
+
+            <div class="modal">
+                <div class="modal-box">
+                    <div class="modal-content">
+                        <h3 class="modal-title">Delete Patient</h3>
+                        <p>Are you sure you want to delete ${patient.firstName} ${patient.lastName}? This cannot be undone.</p>
+                    </div>
+                    <form class="modal-actions" action="editPatientServlet" method="post">
+                        <input type="hidden" name="patientId" value="${patient.id}">
+                        <button type="submit" class="button delete" name="delete" value="delete">Delete Patient</button>
+                        <button class="secondary">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                // Delete Modal
+                // A styled confirmation modal to confirm that the user wants to delete
+                // the patient to prevent accidental deletions
+                let modal = document.querySelector('.modal');
+                let showModalBtn = document.querySelector('.show-modal');
+                let modalCancelBtn = document.querySelector('.modal button.secondary');
+
+                showModalBtn.addEventListener('click', showHideModal);
+                modalCancelBtn.addEventListener('click', showHideModal);
+
+                function showHideModal(event) {
+                    event.preventDefault();
+                    modal.classList.toggle('shown');
+                }
+            </script>
+
 
             <script>
                 let field = document.querySelector('#timestamp');
