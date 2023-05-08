@@ -7,7 +7,7 @@
         </ul>
     </div>
 
-    <button class="secondary">
+    <button onclick="window.location.href='logoutServlet';" class="secondary">
         <img src="images/log-out.svg" alt="log out icon" />
         Log Out
     </button>
