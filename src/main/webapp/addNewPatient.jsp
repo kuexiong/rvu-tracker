@@ -5,6 +5,8 @@
 
 <html>
     <body>
+    <c:import url="navBar.jsp"/>
+
         <main id="patient-info">
             <h1>New Patient</h1>
 
