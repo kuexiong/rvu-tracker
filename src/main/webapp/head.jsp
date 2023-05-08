@@ -17,7 +17,7 @@
     <!-- Stylesheets -->
     <link href="style/main.css" rel="stylesheet" type="text/css"/>
     <link href="style/inputs.css" rel="stylesheet" type="text/css"/>
-    <link href="style/pages/${pageStyle}.css" rel="stylesheet" type="text/css"/>
+    <link href="style/pages/${sessionScope.pageStyle}.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
