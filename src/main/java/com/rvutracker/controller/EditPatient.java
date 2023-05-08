@@ -27,9 +27,12 @@ import java.util.List;
  */
 
 @WebServlet(
-        urlPatterns = {"/updatePatientServlet"}
+        urlPatterns = {"/editPatientServlet"}
 )
-public class UpdatePatient extends HttpServlet {
+public class EditPatient extends HttpServlet {
+
+    //Instantiate GenericDao of Patient object.
+    GenericDao patientDao = new GenericDao(Patient.class);
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     /**
