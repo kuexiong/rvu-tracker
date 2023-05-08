@@ -8,7 +8,7 @@
         <main id="patient-info">
             <h1>New Patient</h1>
 
-            <form action="addPatientServlet" method="post">
+            <form id="patientForm" action="addPatientServlet" method="post">
                 <div id="patient-details" class="box">
                     <div class="box-header">
                         <img src="images/user.svg" alt="User icon">
@@ -71,22 +71,22 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input id="96116quantity" type="text" name="96116quantity"></td>
+                                        <td><input id="quantity96116" type="text" name="quantity96116"></td>
                                         <td>96116</td>
                                         <td>Interview and chart review (First hour)</td>
                                     </tr>
                                     <tr>
-                                        <td><input id="96121quantity" type="text" name="96121quantity"></td>
+                                        <td><input id="quantity96121" type="text" name="quantity96121"></td>
                                         <td>96121</td>
                                         <td>Interview and chart review (Each additional hour)</td>
                                     </tr>
                                     <tr>
-                                        <td><input id="96132quantity" type="text" name="96132quantity"></td>
+                                        <td><input id="quantity96132" type="text" name="quantity96132"></td>
                                         <td>96132</td>
                                         <td>Testing and report writing (First hour)</td>
                                     </tr>
                                     <tr>
-                                        <td><input id="96133quantity" type="text" name="96133quantity"></td>
+                                        <td><input id="quantity96133" type="text" name="quantity96133"></td>
                                         <td>96133</td>
                                         <td>Testing and report writing (Each additional hour)</td>
                                     </tr>
