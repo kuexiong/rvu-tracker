@@ -8,7 +8,7 @@
         <main id="patient-info">
             <h1>Edit Patient</h1>
 
-            <form action="updatePatientServlet" method="post" id="update-form">
+            <form action="editPatientServlet" method="post" id="update-form">
                 <div id="patient-details" class="box">
                     <div class="box-header">
                         <img src="images/user.svg" alt="User icon">
