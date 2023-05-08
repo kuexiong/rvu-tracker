@@ -1,11 +1,16 @@
+/* Layout */
+
 #patient-info {
     width: 720px;
+    padding: 32px;
     margin: 0 auto;
 }
 
 h1 {
     text-align: center;
 }
+
+/* Generic Box */
 
 .box {
     display: flex;
@@ -31,18 +36,15 @@ h1 {
     padding: 24px 32px 32px;
 }
 
+/* Form */
+
 .patient-form-actions {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-bottom: 32px;
 }
 
-.button {
-    width: 25%;
+.patient-form-actions button:not(:only-child) {
     margin-right: 16px;
-}
-
-.secondary {
-    width: 15%;
 }
 
