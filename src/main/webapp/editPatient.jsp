@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="taglib.jsp"/>
-<c:set var="pageStyle" value="patient" />
+<c:set var="pageStyle" value="patient" scope="session"/>
+<c:set var="title" value="Edit Patient | RVU Tracker" scope="session"/>
 <c:import url="head.jsp"/>
 
 <html>
