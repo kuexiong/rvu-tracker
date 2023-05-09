@@ -13,7 +13,8 @@ I would like to build a website that providers can easily use to track their bil
 and reports.
 
 ### Project Technologies/Techniques
-* IDE: IntelliJ IDEA
+* IDE
+  * IntelliJ IDEA
 * Dependency Management
     * Maven
 * Logging
@@ -22,6 +23,14 @@ and reports.
     * JUnit tests to achieve 80%+ code coverage
 * Database
     * MySQL 8.0.16
+* ORM Framework
+  * Hibernate 5.4.4
+* Data Validation
+  * jQuery Validation
+* Hosting
+  * AWS
+* Security/Authentication
+  * AWS Cognito
 * Web Services consumed using Java
     * Quickchart to generate progress bar https://quickchart.io/
 
