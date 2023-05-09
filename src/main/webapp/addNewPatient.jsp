@@ -43,12 +43,12 @@
                         </div>
                         <div class="field">
                             <label for="reportStatus">Report Status</label>
-                            <input list="reportStatus" name="reportStatus" required>
-                            <datalist id="reportStatus">
-                                <option value="In Progress">
-                                <option value="Final Review">
-                                <option value="Signed">
-                            </datalist>
+                            <select id="reportStatus" name="reportStatus">
+                                <option value="">Please choose an option</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Final Review">Final Review</option>
+                                <option value="Signed">Signed</option>
+                            </select>
                         </div>
 
                         <div class="field">
