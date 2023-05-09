@@ -59,6 +59,7 @@ public class Reporting extends HttpServlet implements PropertiesLoader {
         // Instantiate GenericDao of CalculateRVU object.
         GenericDao calculateRVU = new GenericDao(CalculateRVU.class);
 
+
         // Get username from session
         HttpSession session = request.getSession(false);
 
@@ -83,7 +84,7 @@ public class Reporting extends HttpServlet implements PropertiesLoader {
 
         // Calculate RVUs
         CalculateRVU totals = new CalculateRVU();
-        Map<String, Map<String, Float>> monthlyTotals = totals.calculate(8);
+        Map<String, Map<String, Float>> monthlyTotals = totals.calculate(sessionUser);
         logger.info("The monthly totals are: " + monthlyTotals);
 
         // Get current RUV for the month
