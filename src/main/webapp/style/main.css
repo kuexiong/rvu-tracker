@@ -44,8 +44,9 @@ body {
     font-size: 16px;
     background: var(--gray50);
 }
-
-/* Navigation */
+/* ---------------------------
+    Navigation
+--------------------------- */
 
 nav {
     display: flex;
@@ -79,7 +80,9 @@ nav ul li .button:not(.active) {
     border-color: transparent;
 }
 
-/* Typography */
+/* ---------------------------
+    Typography
+--------------------------- */
 
 h1,h2,h3,h4,h5,h6 {
     font-weight: 600;
@@ -111,4 +114,22 @@ h6 {
 
 a {
 
+}
+
+/* ---------------------------
+    Box
+    Generic styling for a
+    white box with blue border
+--------------------------- */
+.box {
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--blue100);
+    border-radius: var(--border-radius);
+}
+
+.content-wrapper-lg {
+    max-width: 1280px;
+    padding: 0 24px;
+    margin: 32px auto 64px;
 }
