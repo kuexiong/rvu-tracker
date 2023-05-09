@@ -19,24 +19,27 @@
 
     <h2>${currentMonth} ${currentYear}</h2>
 
-        <table>
-            <thead>
-            <th><h5>Current RVU</h5></th>
-            <th><h5>Target RVU</h5></th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>${currentMonthlyTotal['Total']}</td>
-                    <td>300</td>
-                </tr>
-            </tbody>
-        </table>
-    
-    <img src="${progressBar}">
+        <div class="kpis">
+            <div class="kpi">
+                <h5 class="kpiTitle">Current RVU</h5>
+                <div class="kpiValue">${currentMonthlyTotal['Total']}</div>
+            </div>
+            <div class="kpi">
+                <h5 class="kpiTitle">Target RVU</h5>
+                <div class="kpiValue">300</div>
+            </div>
+            <div class="kpi">
+                <h5 class="kpiTitle">Progress</h5>
+                <div class="kpiValue">
+                    <img src="${progressBar}" width="100%">
+                </div>
+            </div>
+        </div>
 
-    <h6>FISCAL YTD</h6>
-
-    <h2>Previous Months</h2>
+        <div class="sectionHeader">
+            <h6>FISCAL YTD</h6>
+            <h2>Previous Months</h2>
+        </div>
 
         <table id="rvuTable" class="display" cellspacing="0">
             <thead>
