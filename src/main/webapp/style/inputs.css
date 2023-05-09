@@ -7,17 +7,19 @@ button {
     display: inline-flex;
     align-items: center;
     padding: 12px 32px;
+    font-size: inherit;
     font-weight: 600;
     color: white;
     background: var(--blue700);
     border: 1px solid transparent;
     border-radius: var(--border-radius);
     transition: all 200ms ease-out;
+    text-decoration: none;
 }
 
 .button:hover,
 button:hover {
-    border-color: var(--blue800);
+    background: var(--blue800);
 }
 
 .button.active,
@@ -82,10 +84,17 @@ label {
     line-height: 1.6;
 }
 
-input {
+input,
+select,
+textarea {
     display: flex;
+    font-family: inherit;
     padding: 12px;
     border: 1px solid var(--gray300);
+}
+
+textarea {
+    resize: vertical;
 }
 
 /* ---------------------------
@@ -95,7 +104,7 @@ input {
 .field {
     display: flex;
     flex-direction: column;
-    margin: 8px 0;
+    margin: 0 0 16px;
 }
 
 .field label {
@@ -167,4 +176,112 @@ input.error {
 .modal-actions button {
     margin-right: 16px;
     flex: 0 auto;
+}
+
+/* ---------------------------
+    KPIs
+--------------------------- */
+
+.kpis {
+    display: flex;
+    justify-content: space-between;
+}
+
+.kpi {
+    width: calc((100% / 3) - 24px);
+    padding: 32px;
+    text-align: center;
+    background: white;
+    border: 1px solid var(--blue100);
+    border-radius: var(--border-radius);
+}
+
+.kpiTitle {
+    margin: 0 0 16px;
+    color: var(--gray600);
+}
+
+.kpiValue {
+    font-size: 64px;
+    font-weight: 300;
+}
+
+/* ---------------------------
+    Tables
+--------------------------- */
+
+table {
+    font-size: 14px;
+}
+
+table td,
+table th {
+    padding: 8px;
+    text-align: left;
+}
+
+table td:first-child,
+table th:first-child{
+    padding-left: 0;
+}
+
+table td:last-child,
+table th:first-child{
+    padding-right: 0;
+}
+
+table td input {
+    padding: 4px 8px;
+}
+
+/* ---------------------------
+    JQuery Data Table
+--------------------------- */
+
+/* Table Wrapper */
+.dataTables_wrapper {
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--blue100);
+    border-radius: var(--border-radius);
+}
+
+/* Page Selector */
+.dataTables_length label select {
+    padding: inherit;
+    margin: 0 8px;
+}
+
+/* Filter Search Box */
+.dataTables_filter label input {
+    padding: 0 8px;
+}
+
+/* Pagination */
+.paginate_button.current {
+    background: white !important;
+    borer-color: var(--blue100) !important;
+    border-radius: var(--border-radius);
+}
+
+/* Table */
+.dataTable {
+    margin: 48px 0 24px !important;
+    border-bottom: 0;
+}
+
+.dataTable thead th {
+    padding-left: 12px !important;
+    text-align: left;
+    border-bottom: 0;
+}
+
+.dataTable.display tbody td {
+    border-top: none !important;
+}
+
+.dataTable a,
+.dataTable a:visited {
+    color: black;
+    text-decoration: none;
 }
