@@ -23,7 +23,7 @@ h1 {
 
 .box-header {
     display: flex;
-    padding: 16px 32px;
+    padding: 0 0 16px;
     color: var(--blue800);
     border-bottom: 1px solid var(--blue100);
 }
@@ -33,7 +33,7 @@ h1 {
 }
 
 .box-content {
-    padding: 24px 32px 32px;
+    padding: 16px 0 0;
 }
 
 /* Form */
@@ -44,7 +44,7 @@ h1 {
     margin-bottom: 32px;
 }
 
-.patient-form-actions button:not(:only-child) {
-    margin-right: 16px;
+.patient-form-actions button + button {
+    margin-left: 16px;
 }
 
