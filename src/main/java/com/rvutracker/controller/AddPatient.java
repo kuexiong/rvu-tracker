@@ -165,7 +165,7 @@ public class AddPatient extends HttpServlet {
             charges.put((CptCode) cptCodeDao.getById(codeId), Integer.parseInt(cpt96132));
         }
         if (!cpt96133.isEmpty()) {
-            int codeId = cptCodes.get(2).getId();
+            int codeId = cptCodes.get(3).getId();
             charges.put((CptCode) cptCodeDao.getById(codeId), Integer.parseInt(cpt96133));
         }
 
