@@ -9,4 +9,5 @@ INSERT INTO patient VALUES (1,'Peppa','Pig','2023-01-12','Anxiety','In Progress'
                            (4,'Zuzu','Zebra','2023-02-10','TBI','Final Review',1);
 INSERT INTO amountbilled VALUES (1, 1, '2023-01-15 13:15:01', 1, 1),
                                  (2, 1, '2023-01-15 13:15:01', 1, 2),
-                                 (3, 1, '2023-01-20 10:30:00', 2, 3);
+                                 (3, 1, '2023-01-20 10:30:00', 2, 3),
+                                 (4, 1, '2023-01-20 10:30:00', 2, 4) ;
