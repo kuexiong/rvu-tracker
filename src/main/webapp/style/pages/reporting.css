@@ -1,0 +1,16 @@
+/* ---------------------------
+    Section Header
+--------------------------- */
+
+.sectionHeader {
+    margin: 24px 0;
+}
+
+.sectionHeader h6 {
+    margin-bottom: 0;
+    color: var(--gray500);
+}
+
+.sectionHeader h2 {
+    margin-top: 8px;
+}
