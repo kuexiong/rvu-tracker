@@ -59,10 +59,7 @@
 
 ### Week 8
 #### This week's focus is Progress Bar API
-- [ ] Consume a RESTful web service in your individual project
-- [ ] Create a pojo that represents the response from the service
-- [ ] Create a client that calls the service and maps the response to the pojo
-- [ ] Write a unit test to verify the client and pojo work
+- [x] Consume a RESTful web service in your individual project
 - [ ] Self-eval due
 - [ ] Professional development feedback
 - [ ] Weekly reflection
@@ -76,7 +73,7 @@
 
 ### Week 10
 #### This week's focus is the team project
-- [ ] Present prof development topic
+- [x] Present prof development topic
 - [ ] Professional development feedback
 - [ ] Weekly reflection
 
@@ -103,17 +100,17 @@
 - [x] generic dao to add AmountBilled to db (java class)
 - [x] unit test dao add time billed functionality
 - [x] test round trip (front end to back end)
-- [ ] Weekly reflection
+- [x] Weekly reflection
 
 ### Week 14
 #### This week's focus is the View RVU Accrued Story
-- [ ] Select Template | Design CSS
-- [ ] new RVU Report jsp
-- [ ] add RVU report controller (java class)
-- [ ] generic dao to get data from db (java class)
-- [ ] unit test dao RVU functionality
-- [ ] test round trip (front end to back end)
-- [ ] Weekly reflection
+- [x] Select Template | Design CSS
+- [x] new RVU Report jsp
+- [x] add RVU report controller (java class)
+- [x] generic dao to get data from db (java class)
+- [ ] unit test CalculateRVU functionality
+- [x] test round trip (front end to back end)
+- [x] Weekly reflection
 
 ### Week 15
 - [ ] Final Presentation
