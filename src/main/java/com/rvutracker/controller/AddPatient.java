@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -73,16 +74,15 @@ public class AddPatient extends HttpServlet {
         logger.info("96121 quantity: " + cpt96121);
         logger.info("The timestamp is: " + retrievedTimestamp.getTime());
 
-        // TODO: activate when deploying to AWS
         // Get username from session
-//        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
 
-//        int sessionUserId = (int)session.getAttribute("id");
-//        logger.info("The id in session is: " + sessionUserId);
+        int sessionUserId = (int)session.getAttribute("id");
+        logger.info("The id in session is: " + sessionUserId);
 
         // Get user by id
-//        User retrievedUser = (User)userDao.getById(sessionUserId);
-        User retrievedUser = (User)userDao.getById(8);
+        User retrievedUser = (User)userDao.getById(sessionUserId);
+//        User retrievedUser = (User)userDao.getById(8);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
         // Instantiate new patient.

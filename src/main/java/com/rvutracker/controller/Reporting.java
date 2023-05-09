@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -58,16 +59,15 @@ public class Reporting extends HttpServlet implements PropertiesLoader {
         // Instantiate GenericDao of CalculateRVU object.
         GenericDao calculateRVU = new GenericDao(CalculateRVU.class);
 
-        // TODO: activate when deploying to AWS
         // Get username from session
-//        HttpSession session = request.getSession(false);
-//
-//        int sessionUser = (int)session.getAttribute("id");
-//        logger.info("The id in session is: " + sessionUser);
+        HttpSession session = request.getSession(false);
+
+        int sessionUser = (int)session.getAttribute("id");
+        logger.info("The id in session is: " + sessionUser);
 
         // Get user by id
-//        User retrievedUser = (User)userDao.getById(sessionUser);
-        User retrievedUser = (User)userDao.getById(8);
+        User retrievedUser = (User)userDao.getById(sessionUser);
+//        User retrievedUser = (User)userDao.getById(8);
         logger.info("The retrieved user is: " + retrievedUser.getFirstName());
 
         // Get current month
