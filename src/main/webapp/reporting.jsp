@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="taglib.jsp"/>
-<c:set var="pageStyle" value="reporting" />
+<c:set var="pageStyle" value="reporting" scope="session" />
+<c:set var="activePage" value="reporting" scope="session" />
 <c:set var="user" value='${requestScope["user"]}' />
+<c:set var="title" value="Reporting | RVU Tracker" scope="session"/>
 <c:import url="head.jsp"/>
 
 <%--<script type="text/javascript" class="init">--%>
@@ -15,9 +17,11 @@
 
     <c:import url="navBar.jsp"/>
 
-    <h6>CURRENT MONTH</h6>
-
-    <h2>${currentMonth} ${currentYear}</h2>
+    <main id="reporting" class="content-wrapper-lg">
+        <div class="sectionHeader">
+            <h6>CURRENT MONTH</h6>
+            <h2>${currentMonth} ${currentYear}</h2>
+        </div>
 
         <div class="kpis">
             <div class="kpi">
@@ -65,6 +69,7 @@
                 </c:forEach>
             </tbody>
         </table>
+    </main>
 
   </body>
 </html>
