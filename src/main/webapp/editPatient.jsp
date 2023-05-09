@@ -2,6 +2,7 @@
 <c:import url="taglib.jsp"/>
 <c:set var="pageStyle" value="patient" scope="session"/>
 <c:set var="title" value="Edit Patient | RVU Tracker" scope="session"/>
+<c:set var="statuses" value="${['In Progress', 'Final Review', 'Signed']}" scope="application" />
 <c:import url="head.jsp"/>
 
 <html>
@@ -43,12 +44,11 @@
                         </div>
                         <div class="field">
                             <label for="reportStatus">Report Status</label>
-                            <input list="reportStatus" name="reportStatus" required value="${patient.reportStatus}">
-                            <datalist id="reportStatus">
-                                <option value="In Progress">
-                                <option value="Final Review">
-                                <option value="Signed">
-                            </datalist>
+                            <select id="reportStatus" name="reportStatus">
+                                <c:forEach var="status" items="${statuses}">
+                                    <option value="${status}" ${status == patient.reportStatus ? 'selected' : ''}>${status}</option>
+                                </c:forEach>
+                            </select>
                         </div>
 
                         <div class="field">
