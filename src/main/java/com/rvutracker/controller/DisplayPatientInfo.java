@@ -75,7 +75,7 @@ public class DisplayPatientInfo extends HttpServlet {
     }
 
     /**
-     * Gets quantity for 96116.
+     * Gets quantity for 96116 from database.
      *
      * @param patientId the patient id
      * @return the 96116
@@ -99,7 +99,7 @@ public class DisplayPatientInfo extends HttpServlet {
     }
 
     /**
-     * Gets quantity for 96121.
+     * Gets quantity for 96121 from database.
      *
      * @param patientId the patient id
      * @return the 96121
@@ -123,7 +123,7 @@ public class DisplayPatientInfo extends HttpServlet {
     }
 
     /**
-     * Gets quantity for 96132.
+     * Gets quantity for 96132 from database.
      *
      * @param patientId the patient id
      * @return the 96132
@@ -147,7 +147,7 @@ public class DisplayPatientInfo extends HttpServlet {
     }
 
     /**
-     * Gets quantity for 96133.
+     * Gets quantity for 96133 from database.
      *
      * @param patientId the patient id
      * @return the 96133
@@ -157,7 +157,6 @@ public class DisplayPatientInfo extends HttpServlet {
         // Instantiate GenericDao of AmountBilled object.
         GenericDao amountBilledDao = new GenericDao(AmountBilled.class);
 
-//        int quantity = 0;
         String quantity = null;
 
         List<AmountBilled> cpt96133 = (List<AmountBilled>)amountBilledDao.getByPatientCodeIds(patientId, 4);
