@@ -12,6 +12,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit test for the Auth class.
+ */
 class AuthTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
