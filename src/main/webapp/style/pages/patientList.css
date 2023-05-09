@@ -1,15 +1,6 @@
-td a:link {
-    text-decoration: none;
-}
-
-td a:visited {
-    text-decoration: black;
-}
-
-tr:hover {
-    background: var(--blue300);
-    text-decoration: none;
-}
-td a {
-    display: block;
+/* ---------------------------
+    Layout
+--------------------------- */
+#patientList > .button {
+    margin: 48px 0 16px;
 }
