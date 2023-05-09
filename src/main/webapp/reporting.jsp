@@ -38,7 +38,7 @@
 
     <h2>Previous Months</h2>
 
-        <table id="rvuTable" class="display" cellspacing="0" width="75%">
+        <table id="rvuTable" class="display" cellspacing="0">
             <thead>
             <th>Month</th>
             <th>Year</th>
