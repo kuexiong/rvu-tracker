@@ -41,7 +41,6 @@ public class CalculateRVU {
         LocalDate currentDate = LocalDate.now();
 
         currentMonth = currentDate.getMonth();
-        logger.info("The current month is: " + currentMonth);
         return currentMonth;
     }
 
@@ -55,7 +54,6 @@ public class CalculateRVU {
         LocalDate currentDate = LocalDate.now();
 
         currentYear = currentDate.getYear();
-        logger.info("The current year is: " + currentYear);
         return currentYear;
     }
 
@@ -89,13 +87,6 @@ public class CalculateRVU {
                 allCharges.addAll(patientBilling);
             }
         }
-        logger.info("-----------------------------");
-        logger.info("--- All Charges");
-        logger.info("-----------------------------\n");
-        logger.info(allCharges);
-
-        logger.info("-----------------------------");
-        logger.info("--- Sum Loop \n");
 
         // Loop through array of charges to add quantity and code to each month
         for(AmountBilled charge : allCharges) {
@@ -118,9 +109,6 @@ public class CalculateRVU {
             // if the date is greater than June 2022 and less than July 2023
             if (cal.after(calculateFiscalStart()) && cal.before(calculateFiscalEnd())) {
 
-                logger.info("\t\tGot into the if statement");
-                logger.info("\t\tMonth:"  + month);
-
                 if (month == 1) {
                     addToQuantity(january, rvuValue,quantity);
                 } else if (month == 2) {
@@ -129,10 +117,8 @@ public class CalculateRVU {
                     addToQuantity(march, rvuValue,quantity);
                 } else if (month == 4) {
                     addToQuantity(april, rvuValue,quantity);
-                    logger.info("\t\trvuValue for April: " + rvuValue + " quantity for April: " + april.get(rvuValue));
                 } else if (month == 5) {
                     addToQuantity(may, rvuValue,quantity);
-                    logger.info("\t\trvuValue for May: " + rvuValue + " quantity for May: " + may.get(rvuValue));
                 } else if (month == 6) {
                     addToQuantity(june, rvuValue,quantity);
                 } else if (month == 7) {
@@ -150,7 +136,6 @@ public class CalculateRVU {
                 }
             }
 
-            logger.info("-----------------------------\n");
         }
 
         Map<String, Map<String, Float>>monthlyTotals = new LinkedHashMap<String, Map<String, Float>>();
