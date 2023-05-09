@@ -6,15 +6,14 @@
 <c:set var="title" value="Reporting | RVU Tracker" scope="session"/>
 <c:import url="head.jsp"/>
 
-<%--<script type="text/javascript" class="init">--%>
-<%--    $(document).ready( function () {--%>
-<%--        $('#rvuTable').DataTable();--%>
-<%--    } );--%>
-<%--</script>--%>
+<script type="text/javascript" class="init">
+    $(document).ready( function () {
+        $('#rvuTable').DataTable();
+    } );
+</script>
 
 <html>
   <body>
-
     <c:import url="navBar.jsp"/>
 
     <main id="reporting" class="content-wrapper-lg">
