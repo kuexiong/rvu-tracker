@@ -47,7 +47,7 @@ public class AmountBilledDaoTest {
     @Test
     void getAllBillingsSuccess() {
         List<AmountBilled> billings = amountBilledDao.getAll();
-        assertEquals(3, billings.size());
+        assertEquals(4, billings.size());
     }
 
     /**
