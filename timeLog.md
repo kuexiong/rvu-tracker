@@ -64,8 +64,23 @@
 | 4/22/2023 | Week 13: exercise                                                                                                                                            | 2.5   ||
 | 4/24/2023 | RVU tracker: worked on CalculateRVU class                                                                                                                    | 4.25  ||
 | 4/25/2023 | RVU tracker: add charges inputs to new patient form and add new charges to database                                                                          | 3.33  ||
+| 4/26/2023 | RVU tracker: Change include directive to JSTL import tag, populate form with patient info, add servlet to update/insert billing                              | 4.0   ||
+| 4/27/2023 | RVU tracker: Add edit patient form, figure out how to delete entry in table when input field is cleared                                                      | 3.0   ||
+| 4/28/2023 | RVU tracker: Further research on how to delete entry when input field is cleared                                                                             | 1.0   ||
+| 4/30/2023 | RVU tracker: Figured out how to delete billing entry via JS script in HTML, started Reporting JSP                                                            | 0.53  ||
+| 5/1/2023  | RVU tracker: Continued Reporting servlet and add reporting servlet                                                                                           | 4.5   ||
+| 5/2/2023  | RVU tracker: Add ReportStatus class to get total of each report status type                                                                                  | 1.43  ||
+| 5/3/2023  | RVU tracker: Fix how to increase charge quantity within Map                                                                                                  | 2.0   ||
+| 5/4/2023  | RVU tracker: Research on how to integrate QuickChart API                                                                                                     | 3.0   ||
+| 5/5/2023  | RVU tracker: Integrated QuickChart into project                                                                                                              | 1.43  ||
+| 5/6/2023  | RVU tracker: Update AWS database tables, add jQuery Form Validation to JSP, moved loading of cognito properties file to StartupServlet, continued unit tests | 4.0   ||
+| 5/7/2023  | RVU tracker: Modal to confirm deleting a patient, refactor edit patient servlet to handle new modal, started on Logout button                                | 3.91  ||
+| 5/8/2023  | RVU tracker: Added remaining CSS and logout function                                                                                                         | 6.28  ||
 |           |                                                                                                                                                              |       ||
 |           |                                                                                                                                                              |       ||
 |           |                                                                                                                                                              |       ||
-
+|           |                                                                                                                                                              |       ||
+|           |                                                                                                                                                              |       ||
+|           |                                                                                                                                                              |       ||
+|           |                                                                                                                                                              |       ||
 
