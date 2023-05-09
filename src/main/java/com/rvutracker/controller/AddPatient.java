@@ -104,10 +104,7 @@ public class AddPatient extends HttpServlet {
             amountBilledDao.insert(newBilling);
         }
 
-        // TODO: add success message
-
-        // TODO: redirect browser back to patient list
-        // Redirect browser back to add new patient
+        // Redirect browser back to patient list
         String url = "/patientListServlet";
         response.sendRedirect(request.getContextPath() + url);
     }
