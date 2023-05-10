@@ -102,7 +102,16 @@ public class Reporting extends HttpServlet implements PropertiesLoader {
         String afterData = (String) context.getAttribute("chartAfterData");
         logger.info("The rvu target from properties file is: " + targetRvu);
 
-        float currentTotal = currentMonthTotal.get("Total");
+        // Get the total for the current month
+        float currentTotal;
+        if (currentMonthTotal.isEmpty()) {
+            currentTotal = 0;
+        } else {
+            currentTotal = currentMonthTotal.get("Total");
+        }
+
+        logger.info("The currentTotal is: " + currentTotal);
+
         logger.info("--------------- QuickChart--------------\n");
         logger.info("The current total for the month is: " + currentMonthTotal);
         logger.info("--------------- QuickChart--------------\n");
