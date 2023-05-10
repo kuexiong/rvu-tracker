@@ -189,6 +189,16 @@ public class Reporting extends HttpServlet implements PropertiesLoader {
         return currentMonthTotal;
     }
 
+    /**
+     * Gets progress bar.
+     *
+     * @param beforeData the before data
+     * @param afterData  the after data
+     * @param width      the width
+     * @param height     the height
+     * @param percentage the percentage
+     * @return the progress bar
+     */
     public String getProgressBar(String beforeData, String afterData,
                                  int width, int height, int percentage) {
 
@@ -204,6 +214,13 @@ public class Reporting extends HttpServlet implements PropertiesLoader {
         return chart.getUrl();
     }
 
+    /**
+     * Calculate percentage (current total/monthly target).
+     *
+     * @param current the current
+     * @param target  the target
+     * @return the int
+     */
     public int calculatePercentage(float current, int target) {
 
         int currentInInt = (int) current;
