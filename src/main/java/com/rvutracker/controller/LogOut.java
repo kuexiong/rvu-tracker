@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The type LogOut to log user out of application.
+ */
 @WebServlet(
         urlPatterns = { "/logoutServlet"}
 )

@@ -10,7 +10,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * The type Report status.
+ * The type Report status to calculate
+ * total count for each report status type.
  */
 public class ReportStatus {
 

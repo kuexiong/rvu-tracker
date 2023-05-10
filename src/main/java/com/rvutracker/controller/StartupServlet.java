@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.util.Properties;
 
+/**
+ * The type Startup servlet to load properties files when application initializes.
+ */
 @WebServlet(
         name = "startupServlet",
         urlPatterns = { "/startupServlet"},

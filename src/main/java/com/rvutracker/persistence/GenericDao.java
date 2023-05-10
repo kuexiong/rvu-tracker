@@ -9,6 +9,11 @@ import org.hibernate.Transaction;
 import javax.persistence.criteria.*;
 import java.util.List;
 
+/**
+ * The type Generic dao.
+ *
+ * @param <T> the type parameter
+ */
 public class GenericDao<T> {
 
     private Class<T> type;
